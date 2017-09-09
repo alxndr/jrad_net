@@ -1,6 +1,19 @@
 # Script for populating the database. You can run it as:
 #
 #     mix run priv/repo/seeds.exs
+#
+# To run this on Gigalixir, first make sure you're migrated...
+#
+#     $ gigalixir migrate $APP_NAME
+#
+# ...then SSH in...
+#
+#     $ gigalixir remote_console $APP_NAME
+#
+# ...then get at the seeds file from the console...
+#
+#     $> Path.join([:code.priv_dir(:gigalixir_getting_started), "repo", "seeds.exs"]) |> Code.eval_file
+
 alias GigalixirGettingStarted.{Repo, Song}
 
 Repo.insert!(%Song{name: "9 to 5 jam", author: "Dolly Parton"})
