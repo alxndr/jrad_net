@@ -1,4 +1,4 @@
-defmodule GigalixirGettingStarted.Mixfile do
+defmodule GigalixirGettingStarted.Mixfile do # TODO rename all these...
   use Mix.Project
 
   def project do
