@@ -15,6 +15,6 @@ defmodule GigalixirGettingStarted.Song do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :shortname, :author])
-    |> validate_required([:name, :shortname, :author])
+    |> validate_required([:name])
   end
 end
