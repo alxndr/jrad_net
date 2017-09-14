@@ -14,6 +14,6 @@ config :gigalixir_getting_started, GigalixirGettingStarted.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "gigalixir_getting_started_test",
+  database: "jrad_net_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
