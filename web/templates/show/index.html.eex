@@ -1,11 +1,11 @@
 <div>
-	<h1>Shows</h1>
+  <h1>Shows</h1>
 
-	<ul>
-		<%= for show <- all_shows do %>
-			<li><%= show.date %></li>
-		<% end %>
-	</ul>
+  <ul>
+    <%= for show <- all_shows do %>
+      <li><%= show.date %></li>
+    <% end %>
+  </ul>
 </div>
 
 <div class="row marketing">

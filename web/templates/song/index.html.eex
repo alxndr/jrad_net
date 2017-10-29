@@ -1,11 +1,11 @@
 <div>
-	<h1>Songs</h1>
+  <h1>Songs</h1>
 
-	<ul>
-		<%= for song <- all_songs do %>
-			<li><%= song.name %></li>
-		<% end %>
-	</ul>
+  <ul>
+    <%= for song <- all_songs do %>
+      <li><%= song.name %></li>
+    <% end %>
+  </ul>
 </div>
 
 <div class="row marketing">
