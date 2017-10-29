@@ -1,9 +1,9 @@
-defmodule GigalixirGettingStarted.Mixfile do # TODO rename all these...
+defmodule JradNet.Mixfile do # TODO rename all these...
   use Mix.Project
 
   def project do
-    [app: :gigalixir_getting_started,
-     version: "0.0.1",
+    [app: :jrad_net,
+     version: "0.1.0-gamma",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -17,7 +17,7 @@ defmodule GigalixirGettingStarted.Mixfile do # TODO rename all these...
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {GigalixirGettingStarted, []},
+    [mod: {JradNet, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex, :libcluster, :ssl, :runtime_tools]]
   end

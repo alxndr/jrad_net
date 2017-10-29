@@ -1,12 +1,12 @@
-defmodule GigalixirGettingStarted.Web do
+defmodule JradNet.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use GigalixirGettingStarted.Web, :controller
-      use GigalixirGettingStarted.Web, :view
+      use JradNet.Web, :controller
+      use JradNet.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -30,12 +30,12 @@ defmodule GigalixirGettingStarted.Web do
     quote do
       use Phoenix.Controller
 
-      alias GigalixirGettingStarted.Repo
+      alias JradNet.Repo
       import Ecto
       import Ecto.Query
 
-      import GigalixirGettingStarted.Router.Helpers
-      import GigalixirGettingStarted.Gettext
+      import JradNet.Router.Helpers
+      import JradNet.Gettext
     end
   end
 
@@ -49,9 +49,9 @@ defmodule GigalixirGettingStarted.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import GigalixirGettingStarted.Router.Helpers
-      import GigalixirGettingStarted.ErrorHelpers
-      import GigalixirGettingStarted.Gettext
+      import JradNet.Router.Helpers
+      import JradNet.ErrorHelpers
+      import JradNet.Gettext
     end
   end
 
@@ -65,10 +65,10 @@ defmodule GigalixirGettingStarted.Web do
     quote do
       use Phoenix.Channel
 
-      alias GigalixirGettingStarted.Repo
+      alias JradNet.Repo
       import Ecto
       import Ecto.Query
-      import GigalixirGettingStarted.Gettext
+      import JradNet.Gettext
     end
   end
 

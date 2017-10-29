@@ -1,9 +1,9 @@
-defmodule GigalixirGettingStarted.Set do
-  use GigalixirGettingStarted.Web, :model
+defmodule JradNet.Set do
+  use JradNet.Web, :model
 
   schema "sets" do
     field :which,   :string
-    belongs_to :show, GigalixirGettingStarted.Show
+    belongs_to :show, JradNet.Show
 
     timestamps()
   end

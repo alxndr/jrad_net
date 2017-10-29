@@ -1,5 +1,5 @@
-defmodule GigalixirGettingStarted.Router do
-  use GigalixirGettingStarted.Web, :router
+defmodule JradNet.Router do
+  use JradNet.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,7 +13,7 @@ defmodule GigalixirGettingStarted.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", GigalixirGettingStarted do
+  scope "/", JradNet do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
@@ -23,7 +23,7 @@ defmodule GigalixirGettingStarted.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", GigalixirGettingStarted do
+  # scope "/api", JradNet do
   #   pipe_through :api
   # end
 end

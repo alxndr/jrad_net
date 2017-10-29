@@ -1,8 +1,8 @@
-defmodule GigalixirGettingStarted.ShowView do
-  use GigalixirGettingStarted.Web, :view
+defmodule JradNet.ShowView do
+  use JradNet.Web, :view
 
   def all_shows do
-    GigalixirGettingStarted.Repo.all GigalixirGettingStarted.Show
+    JradNet.Repo.all JradNet.Show
   end
 
 end

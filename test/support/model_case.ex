@@ -1,4 +1,4 @@
-defmodule GigalixirGettingStarted.ModelCase do
+defmodule JradNet.ModelCase do
   @moduledoc """
   This module defines the test case to be used by
   model tests.
@@ -16,20 +16,20 @@ defmodule GigalixirGettingStarted.ModelCase do
 
   using do
     quote do
-      alias GigalixirGettingStarted.Repo
+      alias JradNet.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import GigalixirGettingStarted.ModelCase
+      import JradNet.ModelCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(GigalixirGettingStarted.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(JradNet.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(GigalixirGettingStarted.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(JradNet.Repo, {:shared, self()})
     end
 
     :ok
@@ -59,7 +59,7 @@ defmodule GigalixirGettingStarted.ModelCase do
   """
   def errors_on(struct, data) do
     struct.__struct__.changeset(struct, data)
-    |> Ecto.Changeset.traverse_errors(&GigalixirGettingStarted.ErrorHelpers.translate_error/1)
+    |> Ecto.Changeset.traverse_errors(&JradNet.ErrorHelpers.translate_error/1)
     |> Enum.flat_map(fn {key, errors} -> for msg <- errors, do: {key, msg} end)
   end
 end

@@ -1,3 +1,3 @@
-defmodule GigalixirGettingStarted.LayoutView do
-  use GigalixirGettingStarted.Web, :view
+defmodule JradNet.LayoutView do
+  use JradNet.Web, :view
 end

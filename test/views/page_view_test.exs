@@ -1,3 +1,3 @@
-defmodule GigalixirGettingStarted.PageViewTest do
-  use GigalixirGettingStarted.ConnCase, async: true
+defmodule JradNet.PageViewTest do
+  use JradNet.ConnCase, async: true
 end

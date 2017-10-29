@@ -1,8 +1,8 @@
-defmodule GigalixirGettingStarted.SongView do
-  use GigalixirGettingStarted.Web, :view
+defmodule JradNet.SongView do
+  use JradNet.Web, :view
 
   def all_songs do
-    GigalixirGettingStarted.Repo.all GigalixirGettingStarted.Song
+    JradNet.Repo.all JradNet.Song
   end
 
 end

@@ -36,5 +36,5 @@
 </div>
 
 <div class="row marketing">
-  Version <%= Application.spec(:gigalixir_getting_started, :vsn) %>    
+  Version <%= Application.spec(:jrad_net, :vsn) %>    
 <end>

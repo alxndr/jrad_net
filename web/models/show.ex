@@ -1,5 +1,5 @@
-defmodule GigalixirGettingStarted.Show do
-  use GigalixirGettingStarted.Web, :model
+defmodule JradNet.Show do
+  use JradNet.Web, :model
 
   schema "shows" do
     field :date, :naive_datetime

@@ -1,5 +1,5 @@
-defmodule GigalixirGettingStarted.SongController do
-  use GigalixirGettingStarted.Web, :controller
+defmodule JradNet.SongController do
+  use JradNet.Web, :controller
 
   def index(conn, _params) do
     render conn, "index.html"

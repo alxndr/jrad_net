@@ -1,4 +1,4 @@
-defmodule GigalixirGettingStarted.ErrorHelpers do
+defmodule JradNet.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule GigalixirGettingStarted.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(GigalixirGettingStarted.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(JradNet.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(GigalixirGettingStarted.Gettext, "errors", msg, opts)
+      Gettext.dgettext(JradNet.Gettext, "errors", msg, opts)
     end
   end
 end

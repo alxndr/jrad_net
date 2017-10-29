@@ -1,4 +1,4 @@
-defmodule GigalixirGettingStarted.Repo.Migrations.CreateEverything do
+defmodule JradNet.Repo.Migrations.CreateEverything do
   use Ecto.Migration
 
   def change do

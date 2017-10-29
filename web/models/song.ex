@@ -1,5 +1,5 @@
-defmodule GigalixirGettingStarted.Song do
-  use GigalixirGettingStarted.Web, :model
+defmodule JradNet.Song do
+  use JradNet.Web, :model
 
   schema "songs" do
     field :name, :string

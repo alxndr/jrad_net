@@ -12,9 +12,9 @@
 #
 # ...then get at the seeds file from the console...
 #
-#     $> Path.join([:code.priv_dir(:gigalixir_getting_started), "repo", "seeds.exs"]) |> Code.eval_file
+#     $> Path.join([:code.priv_dir(:jrad_net), "repo", "seeds.exs"]) |> Code.eval_file
 
-alias GigalixirGettingStarted.{
+alias JradNet.{
   Repo,
   Show,
   Set,

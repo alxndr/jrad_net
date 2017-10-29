@@ -1,4 +1,4 @@
-defmodule GigalixirGettingStarted.ConnCase do
+defmodule JradNet.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -20,23 +20,23 @@ defmodule GigalixirGettingStarted.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      alias GigalixirGettingStarted.Repo
+      alias JradNet.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
 
-      import GigalixirGettingStarted.Router.Helpers
+      import JradNet.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint GigalixirGettingStarted.Endpoint
+      @endpoint JradNet.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(GigalixirGettingStarted.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(JradNet.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(GigalixirGettingStarted.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(JradNet.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

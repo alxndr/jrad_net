@@ -1,4 +1,5 @@
-alias GigalixirGettingStarted.{
+IO.puts "Aliasing JradNet.{ Repo, Set, Show, Song, SongPerformance }...\n"
+alias JradNet.{
   Repo,
   Set,
   Show,

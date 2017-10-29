@@ -1,7 +1,7 @@
-defmodule GigalixirGettingStarted.SongTest do
-  use GigalixirGettingStarted.ModelCase
+defmodule JradNet.SongTest do
+  use JradNet.ModelCase
 
-  alias GigalixirGettingStarted.Song
+  alias JradNet.Song
 
   @valid_attrs %{author: "some content", name: "some content", shortname: "some content"}
   @invalid_attrs %{}

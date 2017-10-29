@@ -1,7 +1,7 @@
-defmodule GigalixirGettingStarted.SetTest do
-  use GigalixirGettingStarted.ModelCase
+defmodule JradNet.SetTest do
+  use JradNet.ModelCase
 
-  alias GigalixirGettingStarted.Set
+  alias JradNet.Set
 
   @valid_attrs %{date: %{day: 17, hour: 14, min: 0, month: 4, sec: 0, year: 2010}}
   @invalid_attrs %{}

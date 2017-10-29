@@ -1,5 +1,5 @@
-defmodule GigalixirGettingStarted.ErrorView do
-  use GigalixirGettingStarted.Web, :view
+defmodule JradNet.ErrorView do
+  use JradNet.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"
