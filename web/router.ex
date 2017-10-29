@@ -18,6 +18,7 @@ defmodule GigalixirGettingStarted.Router do
 
     get "/", PageController, :index
 
+    resources "/shows", ShowController, only: [:index]
     resources "/songs", SongController, only: [:index]
   end
 
