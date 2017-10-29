@@ -13,7 +13,7 @@ defmodule JradNet.Set do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:date, :show_id])
-    |> validate_required([:date, :show_id])
+    |> cast(params, [:show_id, :which])
+    |> validate_required([:show_id, :which])
   end
 end
