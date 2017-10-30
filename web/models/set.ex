@@ -1,5 +1,6 @@
 defmodule JradNet.Set do
   use JradNet.Web, :model
+  alias JradNet.Repo
 
   schema "sets" do
     field :which,   :string
@@ -15,5 +16,15 @@ defmodule JradNet.Set do
     struct
     |> cast(params, [:show_id, :which])
     |> validate_required([:show_id, :which])
+  end
+
+  @doc """
+  Return the Sets which were played in the given `show`.
+  """
+  def from_show(show) do
+    (from set in __MODULE__,
+      where: set.show_id == ^show.id
+    )
+    |> Repo.all
   end
 end

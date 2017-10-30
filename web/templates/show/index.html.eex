@@ -3,7 +3,7 @@
 
   <ul>
     <%= for show <- all_shows do %>
-      <li><%= show.date %></li>
+      <li><a href="<%= show_path(@conn, :show, show) %>"><%= readable_date(show) %></a></li>
     <% end %>
   </ul>
 </div>

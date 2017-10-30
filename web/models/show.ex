@@ -1,5 +1,6 @@
 defmodule JradNet.Show do
   use JradNet.Web, :model
+  alias JradNet.Repo
 
   schema "shows" do
     field :date, :naive_datetime

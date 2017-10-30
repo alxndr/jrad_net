@@ -30,6 +30,7 @@ defmodule JradNet.Mixfile do # TODO rename all these...
        :postgrex,
        :runtime_tools,
        :ssl,
+       :timex,
      ]]
   end
 
@@ -52,6 +53,7 @@ defmodule JradNet.Mixfile do # TODO rename all these...
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:phoenix_pubsub, "~> 1.0"},
       {:postgrex, ">= 0.0.0"},
+      {:timex, "~> 3.1"},
     ]
   end
 
