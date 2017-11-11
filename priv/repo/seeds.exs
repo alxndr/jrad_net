@@ -22,7 +22,7 @@ alias JradNet.{
   SongPerformance,
 }
 
-songs = %{
+s = %{
   _9to5: Repo.insert!(%Song{name: "9 to 5", author: "Dolly Parton"}),
   _9x9: Repo.insert!(%Song{name: "9 x 9", author: "Benevento/Russo Duo"}),
 
@@ -32,7 +32,7 @@ songs = %{
   millionaire: Repo.insert!(%Song{name: "Alice D. Millionaire"}),
   watchtower: Repo.insert!(%Song{name: "All Along The Watchtower", author: "Bob Dylan"}),
   alligator: Repo.insert!(%Song{name: "Alligator"}),
-  allnewminglewood: Repo.insert!(%Song{name: "All New Minglewood Blues"}),
+  minglewood: Repo.insert!(%Song{name: "All New Minglewood Blues"}),
   althea: Repo.insert!(%Song{name: "Althea"}),
   atasiding: Repo.insert!(%Song{name: "At A Siding"}), # part of Terrapin Suite
   atlanticcity: Repo.insert!(%Song{name: "Atlantic City", author: "Bruce Springsteen"}),
@@ -159,7 +159,7 @@ songs = %{
   masonschildren: Repo.insert!(%Song{name: "Mason's Children"}),
   memyuncle: Repo.insert!(%Song{name: "Me And My Uncle"}),
   missionrain: Repo.insert!(%Song{name: "Mission In The Rain"}),
-  missisissippihalfstep: Repo.insert!(%Song{name: "Mississippi Halfstep Uptown Toodeloo"}),
+  halfstep: Repo.insert!(%Song{name: "Mississippi Halfstep Uptown Toodeloo"}),
   mobydick: Repo.insert!(%Song{name: "Moby Dick", author: "Led Zeppelin"}),
   morfbeats: Repo.insert!(%Song{name: "Morfbeats", author: "..."}),
   morningdew: Repo.insert!(%Song{name: "Morning Dew"}),
@@ -192,7 +192,7 @@ songs = %{
   mightyquinn: Repo.insert!(%Song{name: "Quinn The Eskimo", author: "Bob Dylan"}),
 
   raceison: Repo.insert!(%Song{name: "Race Is On"}),
-  ramebleonrose: Repo.insert!(%Song{name: "Ramble On Rose"}),
+  ramble: Repo.insert!(%Song{name: "Ramble On Rose"}),
   reubencherise: Repo.insert!(%Song{name: "Reuben & Cherise"}),
   revolution9: Repo.insert!(%Song{name: "Revolution No. 9", author: "The Beatles"}),
   ripple: Repo.insert!(%Song{name: "Ripple"}),
@@ -219,7 +219,7 @@ songs = %{
   sugarmag: Repo.insert!(%Song{name: "Sugar Magnolia"}),
   sugaree: Repo.insert!(%Song{name: "Sugaree"}),
   summernights: Repo.insert!(%Song{name: "Summer Nights", author: "Jim Jacobs / Warren Casey"}),
-  sunshinedaydream: Repo.insert!(%Song{name: "Sunshine Daydream"}),
+  ssdd: Repo.insert!(%Song{name: "Sunshine Daydream"}),
   superstition: Repo.insert!(%Song{name: "Superstition", author: "Stevie Wonder"}),
   supplication: Repo.insert!(%Song{name: "Supplication"}),
 
@@ -262,7 +262,7 @@ songs = %{
   violalee: Repo.insert!(%Song{name: "Viola Lee Blues"}),
 
   webidyou: Repo.insert!(%Song{name: "We Bid You Goodnight"}),
-  weatherreport: Repo.insert!(%Song{name: "Weather Report Suite"}), # prelude, part 1, part 2/LIG
+  weatherreport: Repo.insert!(%Song{name: "Weather Report Suite"}), # instances can be marked: prelude, part 1, part 2/Let It Grow
   werewolves: Repo.insert!(%Song{name: "Werewolves of London", author: "Warren Zevon"}),
   westla: Repo.insert!(%Song{name: "West LA Fadeaway"}),
   wharfrat: Repo.insert!(%Song{name: "Wharf Rat"}),
@@ -298,25 +298,25 @@ end
 show1 = create_show.(
   ~N[2013-01-26 12:00:00],
   [
-    [songs.bertha, songs.althea, songs.jackstraw, songs.deal, songs.mrcharlie, songs.browneyedwomen, songs.tennesseejed, songs.shakedown, songs.chinacat, songs.rider],
-    [songs.estimated, songs.eyes, songs.help, songs.slip, songs.franklins, songs.ststephen, songs.the11, songs.caution, songs.other1, songs.violalee]
+    [s.bertha, s.althea, s.jackstraw, s.deal, s.mrcharlie, s.browneyedwomen, s.tennesseejed, s.shakedown, s.chinacat, s.rider],
+    [s.estimated, s.eyes, s.help, s.slip, s.franklins, s.ststephen, s.the11, s.caution, s.other1, s.violalee]
   ],
-  [ [songs.usblues] ]
+  [ [s.usblues] ]
 )
 
 show2 = create_show.(
   ~N[2013-12-27 12:00:00],
   [
-    [songs.creampuff, songs.truckin, songs.duprees, songs.cumberland, songs.rowjimmy, songs.bertha, songs.easywind, songs.shakedown],
-    [songs.scarlet, songs.firemtn, songs.playin, songs.althea, songs.lovelight, songs.terrapinstation]
+    [s.creampuff, s.truckin, s.duprees, s.cumberland, s.rowjimmy, s.bertha, s.easywind, s.shakedown],
+    [s.scarlet, s.firemtn, s.playin, s.althea, s.lovelight, s.terrapinstation, s.terrapintransit, s.atasiding, s.terrapinflyer]
   ],
-  [ [songs.brokedown] ]
+  [ [s.brokedown] ]
 )
 
 show = create_show.(
   ~N[2014-08-01 12:00:00],
   [
-    [songs.unclejohns, songs.lazylightning, songs.ststephen, songs.the11, songs.caseyjones, songs.deal, songs.magnificent, songs.reubencherise, songs.eyes, songs.lazylightning, songs.unclejohns], # 2nd lazylightning & unclejohns are reprise
+    [s.unclejohns, s.lazylightning, s.ststephen, s.the11, s.caseyjones, s.deal, s.magnificent, s.reubencherise, s.eyes, s.lazylightning, s.unclejohns], # 2nd lazylightning & unclejohns are reprise
   ],
   []
 )
@@ -324,867 +324,894 @@ show = create_show.(
 show = create_show.(
   ~N[2014-09-19 12:00:00],
   [
-    [songs.biodtl, songs.frienddevil, songs.cumberland, songs.violalee, songs.unclejohns, songs.truckin, songs.other1],
-    [songs.atasiding, songs.shakedown, songs.chinacat, songs.the11, songs.rider, songs.wheel, songs.ladywithfan, songs.terrapinstation]
+    [s.biodtl, s.frienddevil, s.cumberland, s.violalee, s.unclejohns, s.truckin, s.other1],
+    [s.atasiding, s.shakedown, s.chinacat, s.the11, s.rider, s.wheel, s.ladywithfan, s.terrapinstation, s.terrapintransit, s.atasiding, s.terrapinflyer]
   ],
-  [ [songs.lonesomewhistle] ]
+  [ [s.lonesomewhistle] ]
 )
 
-# show = create_show.(
-#   ~N[2014-09-20 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
-#   ~N[2014-10-05 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
-#   ~N[2014-10-10 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
-#   ~N[2014-10-11 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
-#   ~N[2014-11-02 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
-#   ~N[2014-12-29 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
-#   ~N[2014-12-30 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
-#   ~N[2014-12-31 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
-#   ~N[2015-01-23 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
-#   ~N[2015-01-24 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
-#   ~N[2015-02-05 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
-#   ~N[2015-02-06 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
-#   ~N[2015-02-07 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
-#   ~N[2015-02-08 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# show = create_show.(
+create_show.(
+  ~N[2014-09-20 12:00:00],
+  [
+    [s.coldrain, s.bertha, s.saturdaynight, s.althea, s.playin, s.unbrokenchain],
+    [s.help, s.slip, s.franklins, s.weatherreport, s.morningdew, s.ststephen]
+  ],
+  [ [s.nfa] ]
+)
+
+create_show.(
+  ~N[2014-10-05 12:00:00],
+  [
+    [s.alligator, s.scarlet, s.firemtn, s.ststephen, s.rider, s.ladywithfan, s.terrapinstation]
+  ],
+  [ ]
+)
+
+create_show.(
+  ~N[2014-10-10 12:00:00],
+  [
+    [s.goldenroad, s.crazyfingers, s.mrcharlie, s.hesgone, s.loser, s.sugaree, s.violalee],
+    [s.alligator, s.eyes, s.kingsolomons, s.darkstar, s.scarlet, s.firemtn]
+  ],
+  [ [s.ripple] ]
+)
+
+create_show.(
+  ~N[2014-10-11 12:00:00],
+  [
+    [s.musicneverstopped, s.browneyedwomen, s.birdsong, s.rider, s.easywind, s.nfa],
+    [s.shakedown, s.estimated, s.ladywithfan, s.terrapinstation, s.terrapintransit, s.atasiding, s.terrapinflyer, s.reubencherise, s.throwingstones, s.stella]
+  ],
+  [ [s.brokedown, s.happybirthday] ]
+)
+
+create_show.(
+  ~N[2014-11-02 12:00:00],
+  [
+    [s.truckin, s.unclejohns, s.noquarter, s.weatherreport, s.crazyfingers, s.help, s.slip, s.franklins]
+  ],
+  [ ]
+)
+
+create_show.(
+  ~N[2014-12-29 12:00:00],
+  [
+    [s.truckin, s.jackstraw, s.estimated, s.eyes, s.crazyfingers, s.kingsolomons, s.boxofrain],
+    [s.masonschildren, s.throwingstones, s.darkstar, s.watchtower, s.darkstar, s.wheel, s.darkstar, s.ladywithfan, s.terrapinstation, s.rider]
+  ],
+  [ [s.shakedown] ]
+)
+
+create_show.(
+  ~N[2014-12-30 12:00:00],
+  [
+    [s.biodtl, s.althea, s.browneyedwomen, s.pridecucamonga, s.chinacat, s.caseyjones],
+    [s.help, s.slip, s.franklins, s.mtnsmoon, s.revolution9, s.other1]
+  ],
+  [ [s.reubencherise] ]
+)
+
+create_show.(
+  ~N[2014-12-31 12:00:00],
+  [
+    [s.goldenroad, s.violalee, s.cumberland, s.violalee, s.hellbucket, s.violalee], # hmmmm
+    [s.playin, s.ramble, s.musicneverstopped, s.unbrokenchain, s.scarlet, s.firemtn, s.happybirthday],
+    [s.unclejohns, s.space, s.weatherreport, s.birdsong, s.nfa]
+  ],
+  [ ]
+)
+
+create_show.(
+  ~N[2015-01-23 12:00:00],
+  [
+    [s.alabamagetaway, s.millionaire, s.greateststory, s.blackpeter, s.lostsailor, s.stofcircumstance, s.bigrailroad],
+    [s.stranger, s.staggerlee, s.aiko, s.halfstep, s.sugarmag, s.ssdd, s.missionrain]
+  ],
+  [ [s.theyloveeachother] ]
+)
+
+create_show.(
+  ~N[2015-01-24 12:00:00],
+  [
+    [s.alligator, s.caution, s.elizabethreed, s.jackaroe, s.unclejohns, s.ophelia, s.ramble, s.onlydaddy, s.bertha],
+    [s.musicneverstopped, s.cumberland, s.help, s.slip, s.shakedown, s.truckin, s.morningdew]
+  ],
+  [ [s.browneyedwomen] ]
+)
+
+create_show.(
+  ~N[2015-02-05 12:00:00],
+  [
+    [s.musicneverstopped, s.scarlet, s.bertha, s.estimated, s.crazyfingers, s.mrcharlie, s.browneyedwomen],
+    [s.space, s.help, s.slip, s.franklins, s.hesgone, s.truckin, s.other1]
+  ],
+  [ [s.lonesomewhistle] ]
+)
+
+create_show.(
+  ~N[2015-02-06 12:00:00],
+  [
+    [s.chinacat, s.rider, s.easywind, s.violalee, s.althea, s.weatherreport],
+    [s.birdsong, s.playin, s.eyes, s.wheel, s.unclejohns, s.ladywithfan, s.terrapinstation, s.terrapintransit, s.atasiding, s.terrapinflyer]
+  ],
+  [ [s.nfa] ]
+)
+
+create_show.(
+  ~N[2015-02-07 12:00:00],
+  [
+    [s.cassidy, s.jackstraw, s.reubencherise, s.throwingstones, s.firemtn, s.gdtrfb, s.webidyou],
+    [s.suchanight, s.ststephen, s.caution, s.the11, s.greateststory, s.wheel, s.wharfrat, s.sugarmag, s.ssdd]
+  ],
+  [ [s.brokedown] ]
+)
+
+create_show.(
+  ~N[2015-02-08 12:00:00],
+  [
+    [s.creampuff, s.samsondelilah, s.caseyjones, s.cumberland, s.minglewood, s.deal],
+    [s.lazylightning, s.supplication, s.darkstar, s.kingsolomons, s.stella, s.lostsailor, s.stofcircumstance]
+  ],
+  [ [s.shakedown] ]
+)
+
+# create_show.(
 #   ~N[2015-02-14 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-02-15 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-02-16 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-04-22 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-04-23 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-04-24 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-04-25 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-05-01 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-05-02 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-05-09 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-05-16 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-05-22 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-05-23 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-05-24 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-05-30 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-06-03 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-06-05 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-06-06 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-06-25 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-07-05 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-07-10 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-08-08 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-08-14 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-08-22 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-09-04 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-09-06 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-09-19 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-10-02 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-10-03 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-10-04 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-10-28 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-10-29 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-10-30 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-10-31 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-11-27 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-11-28 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-12-11 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-12-12 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-12-19 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2015-12-31 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-01-01 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-01-02 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-01-06 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-01-07 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-02-10 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-02-11 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-02-12 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-02-13 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-02-14 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-03-24 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-03-25 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-03-26 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-04-29 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-04-30 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-06-30 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-07-01 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-07-02 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-07-03 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-08-11 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-08-20 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-08-25 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-08-26 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-10-06 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-10-07 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-10-08 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-11-11 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-11-12 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-11-26 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-12-02 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-12-04 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-12-15 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-12-16 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-12-17 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-12-28 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-12-29 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-12-30 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2016-12-31 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-01-12 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-01-13 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-01-14 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-01-15 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-03-09 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-03-10 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-03-11 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-03-16 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-03-17 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-03-18 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-03-31 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-04-28 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-04-29 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-05-05 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-05-06 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-05-07 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-06-03 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-07-16 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-07-21 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-07-22 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-08-10 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-08-25 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-08-26 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-08-31 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-09-02 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-10-05 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-10-06 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-10-07 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-10-12 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-10-13 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-10-14 12:00:00],
 #   [
 #   ],
 #   [ [] ]
 # )
 #
-# show = create_show.(
+# create_show.(
 #   ~N[2017-10-26 12:00:00],
 #   [
 #   ],
