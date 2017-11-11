@@ -17,6 +17,11 @@
 
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
+
+        <div class="row marketing version">
+          Version <%= Application.spec(:jrad_net, :vsn) %>
+        </div>
+
       </main>
 
     </div>
