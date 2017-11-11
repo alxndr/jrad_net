@@ -1,0 +1,15 @@
+<div>
+  <h1><%= readable_date(@show) %></h1>
+
+  <div class="setlist">
+    <%= for set <- @sets do %>
+      <p><%= JradNet.Set.pretty_name(set.which) %></p>
+      <ol class="set">
+        <%= for song_performance <- set.song_performances do %>
+          <li><%= song_performance.song.name %></li>
+        <% end %>
+      </ol>
+    <% end %>
+  </div>
+
+</div>

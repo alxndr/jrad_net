@@ -1,10 +1,14 @@
 defmodule JradNet.Song do
   use JradNet.Web, :model
+  alias JradNet.{
+    SongPerformance,
+  }
 
   schema "songs" do
     field :name, :string
     field :shortname, :string
     field :author, :string
+    has_many :song_performances, SongPerformance
 
     timestamps()
   end
