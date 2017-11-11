@@ -1,4 +1,4 @@
-defmodule JradNet.Mixfile do # TODO rename all these...
+defmodule JradNet.Mixfile do
   use Mix.Project
 
   def project do
