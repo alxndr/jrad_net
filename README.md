@@ -7,7 +7,8 @@ $ mix deps.get
 
 # get postgres set running...
 
-$ mix ecto.setup
+$ mix do ecto.create, ecto.migrate
+$ mix run priv/repo/seeds.exs
 ```
 
 
