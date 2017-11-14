@@ -527,13 +527,15 @@ create_show.(
   [ [s.slip, s.franklins] ]
 )
 
-# create_show.(
-#   ~N[2015-05-02 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
+create_show.(
+  ~N[2015-05-02 12:00:00],
+  [
+    [s.musicneverstopped, s.crazyfingers, s.other1, s.space, s.ststephen, s.gdtrfb, s.sugarmag, s.ssdd],
+    [s.shakedown, s.estimated, s.the11, s.rider, s.ladywithfan, s.terrapinstation, s.terrapintransit, s.atasiding, s.terrapinflyer]
+  ],
+  [ [s.lonesomewhistle, s.saturdaynight] ]
+)
+
 # create_show.(
 #   ~N[2015-05-09 12:00:00],
 #   [
