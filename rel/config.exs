@@ -32,7 +32,8 @@ end
 # when running `mix release`, the first release in the file
 # will be used by default
 
-release :jrad_net do
+release :jradnet do
+  set applications: [:jrad_net]
   set version: current_version(:jrad_net)
 end
 
