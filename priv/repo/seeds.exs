@@ -455,62 +455,78 @@ create_show.(
   [ [s.shakedown] ]
 )
 
-# create_show.(
-#   ~N[2015-02-14 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-02-15 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-02-16 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-04-22 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-04-23 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-04-24 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-04-25 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-05-01 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
+create_show.(
+  ~N[2015-02-14 12:00:00],
+  [
+    [s.help, s.slip, s.franklins, s.stranger, s.althea, s.wheel, s.saturdaynight],
+    [s.chinacat, s.gdtrfb, s.webidyou, s.theyloveeachother, s.lostsailor, s.stofcircumstance, s.ladywithfan, s.terrapinstation, s.terrapintransit, s.atasiding, s.terrapinflyer]
+  ],
+  [ [s.morningdew] ]
+)
+
+create_show.(
+  ~N[2015-02-15 12:00:00],
+  [
+    [s.bertha, s.greateststory, s.ramble, s.samsondelilah, s.space, s.cumberland, s.shakedown],
+    [s.shakedown, s.alabamagetaway, s.ststephen, s.the11, s.truckin, s.halfstep, s.hellbucket]
+  ],
+  [ [s.touchofgrey] ]
+)
+
+create_show.(
+  ~N[2015-02-16 12:00:00],
+  [
+    [s.drums, s.darkstar, s.eyes, s.memyuncle, s.westla, s.playin],
+    [s.sugarmag, s.aiko, s.magnificent, s.throwingstones, s.unbrokenchain, s.throwingstones, s.ssdd]
+  ],
+  [ [s.looselucy, s.nfa, s.looselucy, s.nfa] ]
+)
+
+create_show.(
+  ~N[2015-04-22 12:00:00],
+  [
+    [s.weatherreport, s.help, s.slip, s.mobydick, s.ladywithfan, s.terrapinstation, s.terrapintransit, s.atasiding, s.terrapinflyer],
+    [s.playin, s.ramble, s.truckin, s.chinacat, s.the11, s.rider]
+  ],
+  [ [s.violalee] ]
+)
+
+create_show.(
+  ~N[2015-04-23 12:00:00],
+  [
+    [s.memyuncle, s.browneyedwomen, s.unclejohns, s.estimated, s.eyes, s.stofcircumstance],
+    [s.goldenroad, s.jackstraw, s.reubencherise, s.nfa, s.jam, s.easywind, s.wheel, s.mightyquinn]
+  ],
+  [ [s.sugarmag, s.ssdd] ]
+)
+
+create_show.(
+  ~N[2015-04-24 12:00:00],
+  [
+    [s.musicneverstopped, s.sunshine, s.throwingstones, s.scarlet, s.firemtn, s.ophelia],
+    [s.alligator, s.crazyfingers, s.mrcharlie, s.kingsolomons, s.morningdew, s.franklins]
+  ],
+  [ [s.bertha] ]
+)
+
+create_show.(
+  ~N[2015-04-25 12:00:00],
+  [
+    [s.biodtl, s.caseyjones, s.candyman, s.greateststory, s.halfstep, s.stranger],
+    [s.althea, s.btw, s.shakedown, s.ststephen, s.other1, s.saturdaynight]
+  ],
+  [ [s.gdtrfb, s.webidyou] ]
+)
+
+create_show.(
+  ~N[2015-05-01 12:00:00],
+  [
+    [s.truckin, s.wheel, s.unclejohns, s.hesgone, s.easywind, s.reubencherise, s.eyes],
+    [s.help, s.slip, s.throwingstones, s.violalee, s.cumberland, s.violalee]
+  ],
+  [ [s.slip, s.franklins] ]
+)
+
 # create_show.(
 #   ~N[2015-05-02 12:00:00],
 #   [
@@ -1225,7 +1241,6 @@ perfs = Repo.all from perf in SongPerformance,
   where: perf.song_id == song.id,
   where: perf.set_id == set.id, # TODO how to pull show of this set?
   preload: [song: song, set: set] 
-perfs
-|> Enum.map(&"##{&1.position} : #{&1.song.name}")
-|> Enum.join("\n")
-|> IO.puts
+song_count = Repo.aggregate(Song, :count, :id)
+show_count = Repo.aggregate(Show, :count, :id)
+IO.puts "#{song_count} songs played at #{show_count} shows for #{length(perfs)} song performances."
