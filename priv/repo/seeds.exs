@@ -226,11 +226,13 @@ s = %{
   tellmemomma: Repo.insert!(%Song{name: "Tell Me, Momma", author: "Bob Dylan"}),
   tennesseejed: Repo.insert!(%Song{name: "Tennessee Jed"}),
   tequila: Repo.insert!(%Song{name: "Tequila", author: "The Champs"}),
-  # terrapin: Repo.insert!(%Song{name: "Terrapin"}), # part of Terrapin Suite
-  terrapinflyer: Repo.insert!(%Song{name: "Terrapin Flyer"}), # part of Terrapin Suite
-  # terrapinrefrain: Repo.insert!(%Song{name: "Terrapin Refrain"}), # part of Terrapin Suite
-  terrapinstation: Repo.insert!(%Song{name: "Terrapin Station"}), # part of Terrapin Suite
-  terrapintransit: Repo.insert!(%Song{name: "Terrapin Transit"}), # part of Terrapin Suite
+  # TODO decide what to do about the Terrapin suite...
+  # "Terrapin" and "Terrapin Refrain" aren't listed in JRADBase v1
+  # terrapin: Repo.insert!(%Song{name: "Terrapin"}),
+  terrapinflyer: Repo.insert!(%Song{name: "Terrapin Flyer"}),
+  # terrapinrefrain: Repo.insert!(%Song{name: "Terrapin Refrain"}),
+  terrapinstation: Repo.insert!(%Song{name: "Terrapin Station"}),
+  terrapintransit: Repo.insert!(%Song{name: "Terrapin Transit"}),
   #thankyousean: Repo.insert!(%Song{name: "Thank You Sean"}), # ...this is spoken isn't it?
   thatstheway: Repo.insert!(%Song{name: "That's The Way", author: "Led Zeppelin"}),
   bends: Repo.insert!(%Song{name: "The Bends", author: "Radiohead"}),
@@ -536,181 +538,219 @@ create_show.(
   [ [s.lonesomewhistle, s.saturdaynight] ]
 )
 
-# create_show.(
-#   ~N[2015-05-09 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-05-16 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-05-22 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-05-23 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-05-24 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-05-30 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-06-03 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-06-05 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-06-06 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-06-25 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-07-05 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-07-10 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-08-08 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-08-14 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-08-22 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-09-04 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-09-06 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-09-19 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-10-02 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-10-03 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-10-04 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-10-28 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-10-29 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-10-30 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-10-31 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
+create_show.(
+  ~N[2015-05-09 12:00:00],
+  [
+    [s.dancin, s.direwolf, s.cassidy, s.ststephen, s.stranger2souls, s.eyes, s.nfa],
+    [s.musicneverstopped, s.kingsolomons, s.chinacat, s.the11, s.rider, s.morningdew, s.saturdaynight] # three repeats!
+  ],
+  [ [s.ripple] ]
+)
+
+create_show.(
+  ~N[2015-05-16 12:00:00],
+  [
+    [s.alligator, s.franklins, s.btw, s.cryptical, s.other1, s.scarlet, s.firemtn],
+    [s.help, s.slip, s.cumberland, s.bertha, s.shakedown, s.greateststory, s.ramble]
+  ],
+  [ [s.sugarmag, s.ssdd] ]
+)
+
+create_show.(
+  ~N[2015-05-22 12:00:00],
+  [
+    [s.nfa, s.browneyedwomen, s.truckin, s.ladywithfan, s.terrapinstation, s.terrapintransit, s.atasiding, s.terrapinflyer, s.wheel]
+  ],
+  []
+)
+
+create_show.(
+  ~N[2015-05-23 12:00:00],
+  [
+    [s.dancin, s.the11, s.help, s.slip, s.violalee, s.dancin, s.violalee, s.throwingstones, s.bertha]
+  ],
+  [ [s.unclejohns] ]
+)
+
+create_show.(
+  ~N[2015-05-24 12:00:00],
+  [
+    [s.jam, s.reubencherise, s.eyes, s.mrcharlie, s.shakedown, s.playin, s.chinacat, s.rider],
+    [s.weatherreport, s.halfstep, s.estimated, s.theyloveeachother, s.greateststory, s.ststephen, s.gdtrfb] # weather report is part 2
+  ],
+  [ [s.cumberland] ]
+)
+
+create_show.(
+  ~N[2015-05-30 12:00:00],
+  [
+    [s.samsondelilah, s.althea, s.truckin, s.hesgone, s.lostsailor, s.stofcircumstance, s.unclejohns],
+    [s.blackpeter, s.playin, s.scarlet, s.cassidy, s.firemtn, s.saturdaynight]
+  ],
+  [ [s.sugaree] ]
+)
+
+create_show.(
+  ~N[2015-06-03 12:00:00],
+  [
+    [s.alabamagetaway, s.easywind, s.birdsong, s.other1, s.atlanticcity, s.womenaresmarter, s.rider],
+    [s.deal, s.stranger, s.suchanight, s.shakedown, s.cumberland, s.stella, s.jackstraw]
+  ],
+  [ [s.sugarmag, s.ssdd] ]
+)
+
+create_show.(
+  ~N[2015-06-05 12:00:00],
+  [
+    [s.jam, s.ladywithfan, s.terrapinstation, s.terrapintransit, s.atasiding, s.terrapinflyer, s.wheel, s.greateststory, s.cumberland]
+  ],
+  []
+)
+
+create_show.(
+  ~N[2015-06-06 12:00:00],
+  [
+    [s.jam, s.truckin, s.the11, s.rider, s.help, s.slip, s.throwingstones, s.shakedown]
+  ],
+  []
+)
+
+create_show.(
+  ~N[2015-06-25 12:00:00],
+  [
+    [s.jam, s.truckin, s.nfa, s.browneyedwomen, s.minglewood, s.ststephen, s.mrcharlie, s.chinacat, s.rider, s.saturdaynight]
+  ],
+  []
+)
+
+create_show.(
+  ~N[2015-07-05 12:00:00],
+  [
+    [s.mamatried, s.help, s.slip, s.unclejohns, s.weatherreport, s.hesgone, s.throwingstones], # weather report is part 2
+    [s.shakedown, s._50ways, s.cumberland, s.estimated, s.space, s.wheel, s.stofcircumstance, s.morningdew, s.samsondelilah] # wheel w/terrapin station jam
+  ],
+  [ [s.mightyquinn] ]
+)
+
+create_show.(
+  ~N[2015-07-10 12:00:00],
+  [
+    [s.jam, s.reubencherise, s.stranger, s.kingsolomons, s.alligator, s.franklins, s.sugarmag, s.ssdd]
+  ],
+  []
+)
+
+create_show.(
+  ~N[2015-08-08 12:00:00],
+  [
+    [s.jam, s.dontease, s.ststephen, s.truckin, s.crazyfingers, s.musicneverstopped, s.eyes, s.dancin] # dancin closer
+  ],
+  []
+)
+
+create_show.(
+  ~N[2015-08-14 12:00:00],
+  [
+    [s.jam, s.lazylightning, s.bertha, s.violalee, s.weatherreport, s.unclejohns, s.greateststory] # weather report is part 2
+  ],
+  []
+)
+
+create_show.(
+  ~N[2015-08-22 12:00:00],
+  [
+    [s.jam, s.jackstraw, s.brotheresau, s.rowjimmy, s.minglewood, s.help, s.slip, s.stranger, s.browneyedwomen, s.btw, s.rider, s.nfa]
+  ],
+  [ [s.saturdaynight] ]
+)
+
+create_show.(
+  ~N[2015-09-04 12:00:00],
+  [
+    [s.jam, s.mamatried, s.althea, s.greateststory, s.ststephen, s.the11, s.caution, s.ststephen, s.shakedown, s.weatherreport, s.slip, s.weatherreport] # weather report is part 2 then reprise
+  ],
+  []
+)
+
+create_show.(
+  ~N[2015-09-06 12:00:00],
+  [
+    [s.jam, s.jackaroe, s.truckin, s.wheel, s.unclejohns, s.unbrokenchain, s.missionrain, s.ladywithfan, s.terrapinstation, s.terrapintransit, s.atasiding, s.terrapinflyer],
+    [s.help, s.slip, s.franklins, s.throwingstones, s.rider, s.drums, s.nfa, s.samsondelilah] # three slips in a row
+  ],
+  [ [s.bertha] ]
+)
+
+create_show.(
+  ~N[2015-09-19 12:00:00],
+  [
+    [s.wheel, s.ramble, s.playin, s.cumberland, s.deal, s.brotheresau, s.chinacat, s.rider, s.kingsolomons, s.sugaree, s.saturdaynight, s.nfa]
+  ],
+  [ [s.scarlet] ]
+)
+
+create_show.(
+  ~N[2015-10-02 12:00:00],
+  [
+    [s.bornXeyed, s.shakedown, s.stranger, s.standingmoon, s.wheel, s.ladywithfan, s.terrapinstation], # three wheels in a row
+    [s.built2last, s.weatherreport, s.atlanticcity, s.rider, s.jam, s.playin, s.brokedown, s.lostsailor, s.stofcircumstance] # weather report is part 2; three riders in a row
+  ],
+  [ [s.sugaree] ]
+)
+
+create_show.(
+  ~N[2015-10-03 12:00:00],
+  [
+    [s.musicneverstopped, s.dancin, s.rowjimmy, s.stranger2souls, s.other1, s.cryptical, s.truckin],
+    [s.scarlet, s.firemtn, s.lookslikerain, s.ststephen, s.tennesseejed, s.ststephen, s.tennesseejed, s.violalee, s.becky, s.violalee, s.stella, s.gdtrfb, s.webidyou]
+  ],
+  [ [s.saturdaynight] ]
+)
+
+create_show.(
+  ~N[2015-10-04 12:00:00],
+  [
+    [s.promisedland, s.unclejohns, s.direwolf, s.estimated, s.eyes, s.kingsolomons, s.brotheresau],
+    [s.darkstar, s.wharfrat, s.darkstar, s.the11, s.ststephen, s.help, s.slip, s.throwingstones, s.superstition, s.throwingstones, s.morningdew]
+  ],
+  [ [s.samsondelilah] ]
+)
+
+create_show.(
+  ~N[2015-10-28 12:00:00],
+  [
+    [s.alligator, s.bertha, s.violalee, s.mrcharlie, s.rowjimmy, s.greateststory],
+    [s.bornXeyed, s.other1, s.birdsong, s.the11, s.nfa, s.sugarmag, s.ssdd]
+  ],
+  [ [s.gdtrfb, s.webidyou] ]
+)
+
+create_show.(
+  ~N[2015-10-29 12:00:00],
+  [
+    [s.bigrailroad, s.dancin, s.browneyedwomen, s.estimated, s.eyes, s.musicneverstopped, s.fame, s.help, s.myxomatosis, s.slip, s.chinacat, s.kingsolomons, s.chinacat, s.rider, s.franklins, s.slip, s.franklins, s.lonesomewhistle]
+  ],
+  []
+)
+
+create_show.(
+  ~N[2015-10-30 12:00:00],
+  [
+    [s.althea, s.truckin, s.crazyfingers, s.brotheresau, s.tennesseejed, s.stranger],
+    [s.weatherreport, s.scarlet, s.firemtn, s.btw, s.jackstraw, s.btw, s.jackstraw, s.morningdew] # weather report is part 2
+  ],
+  [ [s.mightyquinn] ]
+)
+
+create_show.(
+  ~N[2015-10-31 12:00:00],
+  [
+    [s.promisedland, s.playin, s.reubencherise, s.vampireblues, s.throwingstones, s.ladywithfan, s.terrapinstation, s.terrapintransit, s.atasiding, s.terrapinflyer],
+    [s.ststephen, s.bends, s.wheel, s.unclejohns, s.kingsolomons, s.unclejohns, s.killercars, s.shakedown, s.myxomatosis, s.cumberland, s.saturdaynight]
+  ],
+  [ [s.halloweentheme, s.werewolves] ]
+)
+
 # create_show.(
 #   ~N[2015-11-27 12:00:00],
 #   [
