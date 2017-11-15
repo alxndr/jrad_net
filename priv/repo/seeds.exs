@@ -273,6 +273,7 @@ s = %{
 }
 
 create_show = fn (date, sets, encores) ->
+  # TODO don't create the show if one exists on that date
   # date ~N[]
   # sets: [
   #   [101, 102...],
@@ -751,20 +752,24 @@ create_show.(
   [ [s.halloweentheme, s.werewolves] ]
 )
 
-# create_show.(
-#   ~N[2015-11-27 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
-# create_show.(
-#   ~N[2015-11-28 12:00:00],
-#   [
-#   ],
-#   [ [] ]
-# )
-#
+create_show.(
+  ~N[2015-11-27 12:00:00],
+  [
+    [s.alligator, s.slip, s.greateststory, s.candyman, s.ststephen, s.the11, s.ststephen, s.sugarmag, s.ssdd],
+    [s.rowjimmy, s.truckin, s.cassidy, s.tennesseejed, s.mrcharlie, s.dancin, s.drums, s.dancin, s.estimated, s.browneyedwomen]
+  ],
+  [ [s.gdtrfb, s.webidyou] ]
+)
+
+create_show.(
+  ~N[2015-11-28 12:00:00],
+  [
+    [s.bertha, s.throwingstones, s.blackpeter, s.estimated, s.weight, s.scarlet, s.firemtn],
+    [s.sunshine, s.stranger, s.help, s.slip, s.jackaroe, s.cumberland, s.saturdaynight]
+  ],
+  [ [s.shakedown] ]
+)
+
 # create_show.(
 #   ~N[2015-12-11 12:00:00],
 #   [
