@@ -11,6 +11,13 @@ $ mix do ecto.create, ecto.migrate
 $ mix run priv/repo/seeds.exs
 ```
 
+Run seeds on Gigalixir...
+
+```
+$ gigalixir remote_console $APP_NAME
+$> Path.join([:code.priv_dir(:jrad_net), "repo", "seeds.exs"]) |> Code.eval_file
+```
+
 
 -------
 
