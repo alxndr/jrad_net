@@ -13,3 +13,6 @@
   </div>
 
 </div>
+
+<%= link "Edit", to: show_path(@conn, :edit, @show) %>
+<%= link "All Shows", to: show_path(@conn, :index) %>

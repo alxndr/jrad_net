@@ -18,8 +18,8 @@ defmodule JradNet.Router do
 
     get "/", PageController, :index
 
-    resources "/shows", ShowController, only: [:index, :show]
-    resources "/songs", SongController, only: [:index]
+    resources "/shows", ShowController
+    resources "/songs", SongController
     resources "/venues", VenueController
   end
 

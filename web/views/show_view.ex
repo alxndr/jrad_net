@@ -6,10 +6,6 @@ defmodule JradNet.ShowView do
     Show,
   }
 
-  def all_shows do
-    Repo.all Show
-  end
-
   def readable_date(show) do
     mdy(show.date)
   end

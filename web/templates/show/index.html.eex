@@ -1,13 +1,26 @@
-<div>
-  <h1>Shows</h1>
+<h2>Shows</h2>
 
-  <ul>
-    <%= for show <- all_shows do %>
-      <li><a href="<%= show_path(@conn, :show, show) %>"><%= readable_date(show) %></a></li>
-    <% end %>
-  </ul>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Date</th>
 
-<div class="row marketing">
-  Version <%= Application.spec(:jrad_net, :vsn) %>
-<end>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for show <- @shows do %>
+    <tr>
+      <td><a href="<%= show_path(@conn, :show, show) %>"><%= readable_date(show) %></a></td>
+
+      <td class="text-right">
+        <%= link "Show", to: show_path(@conn, :show, show), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: show_path(@conn, :edit, show), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: show_path(@conn, :delete, show), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%#= link "New show", to: show_path(@conn, :new) %>
