@@ -43,6 +43,7 @@ defmodule JradNet.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:apex, "~> 1.1.0"},
       {:cowboy, "~> 1.0"},
       {:distillery, "~> 1.0.0"},
       {:gettext, "~> 0.11"},
