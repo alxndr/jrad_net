@@ -9,10 +9,6 @@ defmodule JradNet.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   scope "/", JradNet do
     pipe_through :browser # Use the default browser stack
 
@@ -22,9 +18,4 @@ defmodule JradNet.Router do
     resources "/songs", SongController
     resources "/venues", VenueController
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", JradNet do
-  #   pipe_through :api
-  # end
 end

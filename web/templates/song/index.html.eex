@@ -7,7 +7,3 @@
     <% end %>
   </ul>
 </div>
-
-<div class="row marketing">
-  Version <%= Application.spec(:jrad_net, :vsn) %>
-<end>
