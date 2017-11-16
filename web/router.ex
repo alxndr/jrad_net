@@ -20,6 +20,7 @@ defmodule JradNet.Router do
 
     resources "/shows", ShowController, only: [:index, :show]
     resources "/songs", SongController, only: [:index]
+    resources "/venues", VenueController
   end
 
   # Other scopes may use custom stacks.
