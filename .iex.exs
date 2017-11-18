@@ -4,7 +4,8 @@ alias JradNet.{
   Set,
   Show,
   Song,
-  SongPerformance
+  SongPerformance,
+  Venue,
 }
 
 defmodule EctoHelpers do
