@@ -30,10 +30,7 @@ defmodule JradNet.ShowController do
   end
 
   def edit(conn, %{"id" => id}) do
-    show =
-      Show
-      |> Repo.get!(id)
-      |> Repo.preload(:venue)
+    show = Show.get_with_venue(id)
     changeset = Show.changeset(show)
     all_venues =
       Venue
