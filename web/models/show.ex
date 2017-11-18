@@ -8,6 +8,7 @@ defmodule JradNet.Show do
   schema "shows" do
     field :date, :naive_datetime
     belongs_to :venue, JradNet.Venue
+    # TODO may be part of an Event (e.g. High Sierra, Songs of Love Benefit...)
 
     timestamps()
   end

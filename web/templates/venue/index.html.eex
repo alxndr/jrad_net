@@ -1,4 +1,6 @@
-<h2>Listing venues</h2>
+<h2>All Venues</h2>
+
+<%= link "New venue", to: venue_path(@conn, :new) %>
 
 <table class="table">
   <thead>
