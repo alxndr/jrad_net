@@ -1,12 +1,16 @@
 defmodule JradNet.Venue do
   use JradNet.Web, :model
+  alias JradNet.{
+    Repo,
+  }
 
   schema "venues" do
     field :name, :string
     # TODO former names
     field :location, :string
     # TODO geolocate
-    field :capacity, :string
+    field :capacity, :string # TODO this should be an integer... http://nicolas-bettenburg.com/articles/scrubbing-get-params-with-phoenix/
+    has_many :shows, JradNet.Show
 
     timestamps()
   end
@@ -18,5 +22,11 @@ defmodule JradNet.Venue do
     struct
     |> cast(params, [:name, :location, :capacity])
     |> validate_required([:name, :location])
+  end
+
+  def get(id), do: Repo.get!(__MODULE__, id)
+
+  def order_by_location(venue_query) do
+    from v in venue_query, order_by: [asc: v.location]
   end
 end

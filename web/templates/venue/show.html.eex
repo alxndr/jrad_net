@@ -1,22 +1,13 @@
-<h2>Show venue</h2>
+<h2><%= @venue.name %></h2>
+
+<p>In <%= @venue.location %></p>
+
+<p><strong>Capacity:</strong> <%= @venue.capacity %></p>
 
 <ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @venue.name %>
-  </li>
-
-  <li>
-    <strong>Location:</strong>
-    <%= @venue.location %>
-  </li>
-
-  <li>
-    <strong>Capacity:</strong>
-    <%= @venue.capacity %>
-  </li>
-
+  <%= for show <- shows_for(@venue) do %>
+    <li><a href="<%= show_path(@conn, :show, show) %>"><%= readable_date(show) %></a></li>
+  <% end %>
 </ul>
 
 <%= link "Edit", to: venue_path(@conn, :edit, @venue) %>

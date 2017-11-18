@@ -1,6 +1,13 @@
 <div>
   <h1><%= readable_date(@show) %></h1>
 
+  <%= if @show.venue do %>
+    <p>
+      <%= link @show.venue.name, to: venue_path(@conn, :show, @show.venue) %>
+      <%= @show.venue.location %>
+    </p>
+  <% end %>
+
   <div class="setlist">
     <%= for set <- @sets do %>
       <p><%= JradNet.Set.pretty_name(set.which) %></p>

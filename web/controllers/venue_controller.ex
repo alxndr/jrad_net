@@ -5,7 +5,11 @@ defmodule JradNet.VenueController do
   }
 
   def index(conn, _params) do
-    venues = Repo.all(Venue)
+    venues =
+      Venue
+      |> Ecto.Query.order_by([v], asc: v.location)
+      |> Repo.all
+      |> Repo.preload(:shows)
     render(conn, "index.html", venues: venues)
   end
 

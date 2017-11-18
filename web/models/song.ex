@@ -1,6 +1,7 @@
 defmodule JradNet.Song do
   use JradNet.Web, :model
   alias JradNet.{
+    Repo,
     SongPerformance,
   }
 
@@ -21,4 +22,6 @@ defmodule JradNet.Song do
     |> cast(params, [:name, :shortname, :author])
     |> validate_required([:name])
   end
+
+  def get(id), do: Repo.get!(__MODULE__, id)
 end

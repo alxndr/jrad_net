@@ -3,25 +3,24 @@
 <table class="table">
   <thead>
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Location</th>
       <th>Capacity</th>
-
-      <th></th>
+      <th>Performances</th>
     </tr>
   </thead>
   <tbody>
 <%= for venue <- @venues do %>
     <tr>
-      <td><%= venue.name %></td>
-      <td><%= venue.location %></td>
-      <td><%= venue.capacity %></td>
-
-      <td class="text-right">
-        <%= link "Show", to: venue_path(@conn, :show, venue), class: "btn btn-default btn-xs" %>
+      <td>
         <%= link "Edit", to: venue_path(@conn, :edit, venue), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: venue_path(@conn, :delete, venue), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%#= link "Delete", to: venue_path(@conn, :delete, venue), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
+      <td><%= link venue.name, to: venue_path(@conn, :show, venue) %></td>
+      <td><%= venue.location %></td>
+      <td class="text-right"><%= venue.capacity %></td>
+      <td class="text-right"><%= length(venue.shows) %></td>
     </tr>
 <% end %>
   </tbody>
