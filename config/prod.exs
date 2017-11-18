@@ -69,7 +69,7 @@ config :jrad_net, JradNet.Repo,
   # allows it to fail connection attempts at a reasonable rate. When DATABASE_URL is present, this line is
   # not used.
   database: "",
-  pool_size: 1
+  pool_size: 1 # must be kept at 1 for free tier on Gigalixir
 
 config :libcluster,
   topologies: [
