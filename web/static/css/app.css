@@ -1,5 +1,9 @@
 /* This file is for your main application css. */
 
+#logo {
+  max-width: 5%;
+}
+
 .version {
   display: none;
 }
