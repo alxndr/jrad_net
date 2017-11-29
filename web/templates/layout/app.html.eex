@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>almost-dead.net</title>
+    <title>good ol' Almost Dead .net</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="icon" type="image/jpg" href="https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/Steal_your_square_icon.jpg/40px-Steal_your_square_icon.jpg" />
   </head>
 
   <body>
