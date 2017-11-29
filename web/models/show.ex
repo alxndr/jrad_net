@@ -7,7 +7,7 @@ defmodule JradNet.Show do
 
   schema "shows" do
     field :date, :naive_datetime
-    belongs_to :venue, JradNet.Venue
+    belongs_to :venue, JradNet.Venue, on_replace: :update
     # TODO may be part of an Event (e.g. High Sierra, Songs of Love Benefit...)
 
     timestamps()
@@ -17,8 +17,17 @@ defmodule JradNet.Show do
   Builds a changeset based on the `struct` and `params`.
   """
   def changeset(struct, params \\ %{}) do
+    venue = case params["venue_id"] || struct.venue_id do
+      nil -> %{} # or should these values be nil?
+      v_id -> case Repo.get(Venue, v_id) do
+        nil -> %{}
+        v -> v
+      end
+    end
     struct
+    |> Repo.preload(:venue)
     |> cast(params, [:date, :venue_id])
+    |> Ecto.Changeset.put_assoc(:venue, venue)
     |> validate_required([:date])
   end
 

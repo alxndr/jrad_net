@@ -44,14 +44,24 @@ defmodule JradNet.ShowController do
 
   def update(conn, %{"id" => id, "show" => show_params}) do
     show = Show.get_with_venue(id)
-    changeset = Show.changeset(show, show_params)
-    case Repo.update(changeset) do
+    show
+    |> Repo.preload(:venue)
+    |> Show.changeset(show_params)
+    |> Repo.update
+    |> case do
       {:ok, show} ->
         conn
         |> put_flash(:info, "Show updated successfully.")
         |> redirect(to: show_path(conn, :show, show))
       {:error, changeset} ->
-        render conn, "edit.html", show: show, changeset: changeset
+        all_venues =
+          Venue
+          |> Venue.order_by_location
+          |> Repo.all
+        render conn, "edit.html",
+          show: show,
+          changeset: changeset,
+          all_venues: all_venues
     end
   end
 end
