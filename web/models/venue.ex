@@ -2,6 +2,7 @@ defmodule JradNet.Venue do
   use JradNet.Web, :model
   alias JradNet.{
     Repo,
+    Show,
   }
 
   schema "venues" do
@@ -10,7 +11,7 @@ defmodule JradNet.Venue do
     field :location, :string
     # TODO geolocate
     field :capacity, :string # TODO this should be an integer... http://nicolas-bettenburg.com/articles/scrubbing-get-params-with-phoenix/
-    has_many :shows, JradNet.Show
+    has_many :shows, Show
 
     timestamps()
   end

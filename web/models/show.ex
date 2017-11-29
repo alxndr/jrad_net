@@ -3,11 +3,12 @@ defmodule JradNet.Show do
   use Timex
   alias JradNet.{
     Repo,
+    Venue,
   }
 
   schema "shows" do
     field :date, :naive_datetime
-    belongs_to :venue, JradNet.Venue, on_replace: :update
+    belongs_to :venue, Venue, on_replace: :update
     # TODO may be part of an Event (e.g. High Sierra, Songs of Love Benefit...)
 
     timestamps()

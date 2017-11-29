@@ -8,7 +8,7 @@ defmodule JradNet.ShowController do
 
   def index(conn, _params) do
     shows =
-      JradNet.Show
+      Show
       |> Ecto.Query.order_by([s], desc: s.date)
       |> Repo.all
       |> Repo.preload(:venue) # ...or something
