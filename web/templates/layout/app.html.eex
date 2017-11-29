@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-path="<%= @conn.request_path %>">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,7 @@
   <body>
     <div class="container">
 
-      <a href="/"><img id="logo" src="https://i.imgur.com/mtlnLra.jpg" /></a>
+      <a href="/"><img id="logo" src="https://i.imgur.com/tvtgYVY.png" alt="Good Ol' Almost Dead" /></a>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>

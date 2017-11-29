@@ -1,7 +1,15 @@
 /* This file is for your main application css. */
 
 #logo {
-  max-width: 5%;
+  float: right;
+  max-width: 13%;
+}
+
+html[data-path="/"] #logo {
+  float: none;
+  display: block;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 .version {
