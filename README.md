@@ -11,13 +11,30 @@ $ mix do ecto.create, ecto.migrate
 $ mix run priv/repo/seeds.exs
 ```
 
-Run seeds on Gigalixir...
+## Gigalixir
+
+Set up (free) DB:
+
+```
+$ gigalixir create_free_database $APP_NAME
+$ gigalixir scale $APP_NAME --replicas=1 # ?
+$ gigalixir migrate $APP_NAME
+```
+
+Run seeds:
 
 ```
 $ gigalixir remote_console $APP_NAME
 $> Path.join([:code.priv_dir(:jrad_net), "repo", "seeds.exs"]) |> Code.eval_file
 ```
 
+Delete (free) DB:
+
+```
+$ gigalixir scale $APP_NAME --replicas=0
+$ export GX_FREEDB_ID=$(gigalixir free_databases $APP_NAME | jq '.[] | select(.state=="AVAILABLE") | .id' | sed -e 's/"//g')
+$ gigalixir delete_free_database $APP_NAME $GX_FREEDB_ID
+```
 
 -------
 
