@@ -2,7 +2,9 @@
 
 <p>In <%= @venue.location %></p>
 
-<p><strong>Capacity:</strong> <%= @venue.capacity %></p>
+<%= if @venue.capacity do %>
+  <p><strong>Capacity:</strong> <%= @venue.capacity %></p>
+<% end %>
 
 <ul>
   <%= for show <- shows_for(@venue) do %>
