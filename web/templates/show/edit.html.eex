@@ -6,4 +6,4 @@
   all_venues: @all_venues
 %>
 
-<%= link "Back", to: show_path(@conn, :index) %>
+<%= link "Back", to: show_path(@conn, :index), class: "btn" %>

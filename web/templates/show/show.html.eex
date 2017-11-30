@@ -1,6 +1,8 @@
 <div>
   <h1><%= readable_date(@show) %></h1>
 
+  <p><%= link "Edit", to: show_path(@conn, :edit, @show), class: "btn btn-lg" %></p>
+
   <%= if @show.venue do %>
     <p>
       <%= link @show.venue.name, to: venue_path(@conn, :show, @show.venue) %>
@@ -21,5 +23,6 @@
 
 </div>
 
-<%= link "Edit", to: show_path(@conn, :edit, @show) %>
-<%= link "All Shows", to: show_path(@conn, :index) %>
+<hr>
+
+<p><%= link "All Shows", to: show_path(@conn, :index), class: "btn btn-lg" %></p>

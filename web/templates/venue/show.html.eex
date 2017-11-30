@@ -10,5 +10,7 @@
   <% end %>
 </ul>
 
-<%= link "Edit", to: venue_path(@conn, :edit, @venue) %>
-<%= link "Back", to: venue_path(@conn, :index) %>
+<div class="form-group">
+  <%= link "Edit", to: venue_path(@conn, :edit, @venue), class: "btn" %>
+  <%= link "Back", to: venue_path(@conn, :index), class: "btn" %>
+</div>

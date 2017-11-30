@@ -1,12 +1,13 @@
 <h2>Shows</h2>
 
+<%= link "New show", to: show_path(@conn, :new) %>
+
 <table class="table">
   <thead>
     <tr>
       <th></th>
       <th>Date</th>
       <th>Venue</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -19,12 +20,9 @@
           <%= link show.venue.name, to: venue_path(@conn, :show, show.venue) %>
         <% end %>
       </td>
-      <td class="text-right">
-        <%#= link "Delete", to: show_path(@conn, :delete, show), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<%#= link "New show", to: show_path(@conn, :new) %>
+<%= link "New show", to: show_path(@conn, :new) %>
