@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <title>good ol' Almost Dead .net</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/jpg" href="https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/Steal_your_square_icon.jpg/40px-Steal_your_square_icon.jpg" />
   </head>
 
