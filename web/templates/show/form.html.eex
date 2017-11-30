@@ -14,14 +14,14 @@
   <div class="form-group">
     <%= label f, :venue_id, class: "control-label" %>
     <%
-      default_venue_id = cond do
-        @changeset.data.venue -> @changeset.data.venue.id
-        true -> 0
+      selected_venue_id = cond do # TODO extract to view helper... can this be a `with` block?
+        @changeset.data.venue && Map.get(@changeset.data.venue, :id) -> @changeset.data.venue.id
+        true -> ""
       end
     %>
     <%= select f, :venue_id,
-      [{"...pick venue:", 0} | Enum.into(@all_venues, [], &({"#{&1.location} — #{&1.name}", &1.id}))],
-      default: default_venue_id,
+      [{"...pick venue:", ""} | Enum.into(@all_venues, [], &({"#{&1.location} — #{&1.name}", &1.id}))],
+      default: selected_venue_id,
       class: "form-control"
     %>
     <%= error_tag f, :venue %>
