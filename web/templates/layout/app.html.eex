@@ -8,14 +8,14 @@
       gtag("js", new Date());
       gtag("config", "UA-110469932-1");
     </script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <title>good ol' Almost Dead .net</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Setlists and more for Joe Russo's Almost Dead">
     <link rel="icon" type="image/jpg" href="https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/Steal_your_square_icon.jpg/40px-Steal_your_square_icon.jpg" />
+    <title>good ol' Almost Dead .net</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
   </head>
 
   <body>
