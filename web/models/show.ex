@@ -43,6 +43,10 @@ defmodule JradNet.Show do
     Timex.format!(show.date, "{M}/{D}/{YY}")
   end
 
+  def friendly_name(show) do
+    "#{readable_date(show)}#{if show.venue, do: " at #{Venue.friendly_name(show.venue)}"}"
+  end
+
   def get_with_venue(id) do
     __MODULE__
     |> Repo.get!(id)

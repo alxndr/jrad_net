@@ -30,4 +30,6 @@ defmodule JradNet.Venue do
   def order_by_location(venue_query) do
     from v in venue_query, order_by: [asc: v.location]
   end
+
+  def friendly_name(venue), do: "#{venue.name}#{if venue.location, do: " (#{venue.location})"}"
 end
