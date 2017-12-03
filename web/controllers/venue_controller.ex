@@ -37,7 +37,7 @@ defmodule JradNet.VenueController do
   end
 
   def edit(conn, %{"id" => id}) do
-    venue = Repo.get!(Venue, id)
+    venue = Venue.get(id)
     changeset = Venue.changeset(venue)
     render(conn, "edit.html", venue: venue, changeset: changeset)
   end
