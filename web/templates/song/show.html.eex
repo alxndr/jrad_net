@@ -19,15 +19,15 @@
       <%= for performance <- @performances do %>
         <% set = performance.set %>
         <tr>
-          <td class="text-right"><%= set.which %></td>
+          <td class="text-right"><%= set_friendly_name(set) %></td>
           <td class="text-right"><%= link readable_date(set.show), to: show_path(@conn, :show, set.show) %></td>
-          <td><%= if set.show.venue, do: link friendly_name(set.show.venue), to: venue_path(@conn, :show, set.show.venue) %></td>
+          <td><%= if set.show.venue, do: link venue_friendly_name(set.show.venue), to: venue_path(@conn, :show, set.show.venue) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <p>Looks like this song hasn't been performed.</p>
+  <p>We don't have a record of that song being performed yet.</p>
 <% end %>
 
 <hr>
