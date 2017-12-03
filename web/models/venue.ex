@@ -30,7 +30,7 @@ defmodule JradNet.Venue do
   def get_with_shows(id) do
     # shows_query = from s in Show, order_by: [desc: s.date]
     __MODULE__
-    |> Repo.get(id)
+    |> Repo.get!(id)
     |> Repo.preload(:shows)
     # |> order_by(shows: shows_query) # TODO order the shows
   end
