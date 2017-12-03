@@ -1,6 +1,7 @@
 defmodule JradNet.VenueController do
   use JradNet.Web, :controller # Repo
   alias JradNet.{
+    Show,
     Venue,
   }
 
@@ -32,8 +33,8 @@ defmodule JradNet.VenueController do
   end
 
   def show(conn, %{"id" => id}) do
-    venue = Repo.get!(Venue, id)
-    render(conn, "show.html", venue: venue)
+    venue = Venue.get_with_shows(id)
+    render conn, "show.html", venue: venue
   end
 
   def edit(conn, %{"id" => id}) do

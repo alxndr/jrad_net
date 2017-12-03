@@ -8,6 +8,7 @@ defmodule JradNet.SongPerformance do
     # variants: duo, instrumental, jam, part #, reprise, solo, spoken, verse #, ... can have multiple?
     # ...theme is just part of the actual song if it's a TV tune or whatever...
     # ...but tease/quote should be a reference to another SongPerformance
+    # TODO: free-form notes; guest performer
 
     timestamps()
   end

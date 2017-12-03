@@ -27,6 +27,14 @@ defmodule JradNet.Venue do
 
   def get(id), do: Repo.get!(__MODULE__, id)
 
+  def get_with_shows(id) do
+    # shows_query = from s in Show, order_by: [desc: s.date]
+    __MODULE__
+    |> Repo.get(id)
+    |> Repo.preload(:shows)
+    # |> order_by(shows: shows_query) # TODO order the shows
+  end
+
   def order_by_location(venue_query) do
     from v in venue_query, order_by: [asc: v.location]
   end

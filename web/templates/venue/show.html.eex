@@ -7,7 +7,7 @@
 <% end %>
 
 <ul>
-  <%= for show <- shows_for(@venue) do %>
+  <%= for show <- @venue.shows do %>
     <li><%= link readable_date(show), to: show_path(@conn, :show, show) %></li>
   <% end %>
 </ul>
