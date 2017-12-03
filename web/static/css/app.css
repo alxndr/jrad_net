@@ -38,6 +38,10 @@
 html[data-path^="/songs/"] ul {
 }
 
+/* editing things */
+.alert {
+  display: flex;
+}
 
 
 
