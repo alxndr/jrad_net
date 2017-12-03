@@ -5,6 +5,7 @@
     <thead>
       <tr>
         <th></th>
+        <th>×</th>
         <th>Title</th>
         <th>Author</th>
       </tr>
@@ -13,6 +14,7 @@
 <%= for song <- @songs do %>
       <tr>
         <td><%= link "Edit", to: song_path(@conn, :edit, song), class: "btn btn-default btn-xs" %></td>
+        <td><%= length(song.song_performances) %></td>
         <td><%= link song.name, to: song_path(@conn, :show, song) %></td>
         <td>
   <%= if song.author do %>
