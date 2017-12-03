@@ -1,5 +1,5 @@
 <div>
-  <h1>Songs</h1>
+  <h1>All Songs</h1>
 
   <table class="table">
     <thead>
@@ -12,7 +12,7 @@
     <tbody>
 <%= for song <- @songs do %>
       <tr>
-        <td></td>
+        <td><%= link "Edit", to: song_path(@conn, :edit, song), class: "btn btn-default btn-xs" %></td>
         <td><%= link song.name, to: song_path(@conn, :show, song) %></td>
         <td>
   <%= if song.author do %>

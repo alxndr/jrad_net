@@ -1,3 +1,5 @@
+<%= link "Edit", to: song_path(@conn, :edit, @song), class: "btn" %>
+
 <h2>"<%= @song.name %>"</h2>
 
 <%= if @song.author do %>
