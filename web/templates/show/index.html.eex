@@ -20,6 +20,11 @@
           <%= link show.venue.name, to: venue_path(@conn, :show, show.venue) %>
         <% end %>
       </td>
+      <td>
+        <%= if show.venue && show.venue.location do %>
+          <%= show.venue.location %>
+        <% end %>
+      </td>
     </tr>
 <% end %>
   </tbody>
