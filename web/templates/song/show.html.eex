@@ -20,5 +20,3 @@
 <hr>
 
 <p><%= link "All Songs", to: song_path(@conn, :index), class: "btn btn-lg" %></p>
-<div class="form-group">
-</div>
