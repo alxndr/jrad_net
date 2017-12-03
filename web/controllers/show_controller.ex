@@ -71,23 +71,44 @@ defmodule JradNet.ShowController do
 
   def update(conn, %{"id" => id, "show" => show_params}) do
     show = Show.get_with_venue(id)
-    venue = case show_params["venue_id"] do
-      nil -> nil
-      "" -> nil
-      venue_id -> case Repo.get(Venue, venue_id) do
-        nil -> nil
-        venue -> venue
-      end
-    end
     show
-    |> Repo.preload(:venue)
     |> Show.changeset(show_params)
-    |> Ecto.Changeset.put_assoc(:venue, venue) # doing this here rather than the show changeset...
     |> Repo.update
     |> case do
       {:ok, show} ->
+        flash_message = if show_params["venue_id"] do
+          venue = case show_params["venue_id"] do # this is not so idiomatic...
+            nil -> nil
+            "" -> nil
+            venue_id -> case Repo.get(Venue, venue_id) do
+              nil -> nil
+              venue -> venue
+            end
+          end
+          if venue do # could probably use `with` for this
+            show
+            |> Repo.preload(:venue)
+            |> Show.changeset(%{})
+            |> Ecto.Changeset.put_assoc(:venue, venue)
+            |> Repo.update
+            |> case do
+              {:ok, show} -> "Show/venue updated successfully."
+              {:error, changeset} ->
+                IO.puts ~s[
+                  !!!!! could not associate show #{show.id} and venue #{venue.id}
+                  !!!!! changeset:
+                  !!!!! #{inspect changeset}
+                ]
+                "Show updated successfully, but could not associate new venue: #{venue.id}"
+            end
+          else
+            "Show updated successfully."
+          end
+        else
+          "Show updated successfully."
+        end
         conn
-        |> put_flash(:info, "Show updated successfully.")
+        |> put_flash(:info, flash_message)
         |> redirect(to: show_path(conn, :show, show))
       {:error, changeset} ->
         all_venues =
