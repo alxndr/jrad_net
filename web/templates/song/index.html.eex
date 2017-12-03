@@ -1,9 +1,27 @@
 <div>
   <h1>Songs</h1>
 
-  <ul>
-    <%= for song <- @songs do %>
-      <li><%= song.name %></li>
-    <% end %>
-  </ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Author</th>
+      </tr>
+    </thead>
+    <tbody>
+<%= for song <- @songs do %>
+      <tr>
+        <td></td>
+        <td><%= link song.name, to: song_path(@conn, :show, song) %></td>
+        <td>
+  <%= if song.author do %>
+          <%= song.author %>
+  <% end %>
+        </td>
+      </tr>
+<% end %>
+    </tbody>
+  </table>
+
 </div>

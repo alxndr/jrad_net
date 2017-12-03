@@ -1,17 +1,49 @@
 /* This file is for your main application css. */
 
+/*
+ * all pages
+ */
+
 #logo {
   float: right;
   max-width: 13%;
 }
+
+.version {
+  display: none;
+}
+
+
+
+/*
+ * specific pages
+ */
+
+/* Show pages */
+.set li a {
+  visibility: hidden;
+  display: inline-block;
+  line-height: 1em;
+  padding: 0.2em;
+  border-radius: 1em;
+  text-decoration: none;
+  background: lightgray;
+  color: white;
+}
+.set li:hover a {
+  visibility: visible;
+}
+
+/* Song pages */
+html[data-path^="/songs/"] ul {
+}
+
+
+
 
 html[data-path="/"] #logo {
   float: none;
   display: block;
   max-width: 90%;
   margin: 0 auto;
-}
-
-.version {
-  display: none;
 }

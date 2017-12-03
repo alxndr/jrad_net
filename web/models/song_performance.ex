@@ -24,4 +24,6 @@ defmodule JradNet.SongPerformance do
     # ?
     # https://hexdocs.pm/ecto/Ecto.Changeset.html#unique_constraint/3
   end
+
+  def get(id), do: Repo.get!(__MODULE__, id)
 end

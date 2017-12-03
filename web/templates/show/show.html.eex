@@ -15,7 +15,9 @@
       <p><%= JradNet.Set.pretty_name(set.which) %></p>
       <ol class="set">
         <%= for song_performance <- set.song_performances do %>
-          <li><%= song_performance.song.name %></li>
+          <li><%= song_performance.song.name %>
+            <%= link "⋯", to: song_path(@conn, :show, song_performance.song) %>
+          </li>
         <% end %>
       </ol>
     <% end %>

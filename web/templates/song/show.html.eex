@@ -1,0 +1,22 @@
+<h2>"<%= @song.name %>"</h2>
+
+<%= if @song.author do %>
+  <p class="author"><strong>Author:</strong> <%= @song.author %></p>
+<% end %>
+
+<%= if length(@performances) > 0 do %>
+  <ul>
+    <%= for performance <- @performances do %>
+      <li><%= link friendly_name(performance.set.show),
+              to: show_path(@conn, :show, performance.set.show) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Looks like this song hasn't been performed.</p>
+<% end %>
+
+<hr>
+
+<p><%= link "All Songs", to: song_path(@conn, :index), class: "btn btn-lg" %></p>
+<div class="form-group">
+</div>

@@ -23,5 +23,21 @@ defmodule JradNet.Song do
     |> validate_required([:name])
   end
 
+  def readable_name(song) do
+    if song.author do
+      author = if song.author === "(trad)", do: "traditonal", else: song.author
+      ~s'"#{song.name}" (#{author})'
+    else
+      ~s'"#{song.name}"'
+    end
+  end
+
   def get(id), do: Repo.get!(__MODULE__, id)
+
+  def get_with_shows(id) do
+    # TODO order performances by the show date...
+    __MODULE__
+    |> Repo.get!(id)
+    |> Repo.preload([{:song_performances, [{:set, [{:show, :venue}]}]}])
+  end
 end
