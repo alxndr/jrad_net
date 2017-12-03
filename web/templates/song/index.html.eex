@@ -1,29 +1,28 @@
-<div>
-  <h1>All Songs</h1>
+<%= link "New song", to: song_path(@conn, :new) %>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th></th>
-        <th>×</th>
-        <th>Title</th>
-        <th>Author</th>
-      </tr>
-    </thead>
-    <tbody>
+<h1>All Songs</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>×</th>
+      <th>Title</th>
+      <th>Author</th>
+    </tr>
+  </thead>
+  <tbody>
 <%= for song <- @songs do %>
-      <tr>
-        <td><%= link "Edit", to: song_path(@conn, :edit, song), class: "btn btn-default btn-xs" %></td>
-        <td><%= length(song.song_performances) %></td>
-        <td><%= link song.name, to: song_path(@conn, :show, song) %></td>
-        <td>
-  <%= if song.author do %>
-          <%= song.author %>
-  <% end %>
-        </td>
-      </tr>
+    <tr>
+      <td><%= link "Edit", to: song_path(@conn, :edit, song), class: "btn btn-default btn-xs" %></td>
+      <td><%= length(song.song_performances) %></td>
+      <td><%= link song.name, to: song_path(@conn, :show, song) %></td>
+      <td>
+<%= if song.author do %>
+        <%= song.author %>
 <% end %>
-    </tbody>
-  </table>
-
-</div>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
