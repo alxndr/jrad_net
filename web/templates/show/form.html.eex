@@ -14,7 +14,7 @@
   <div class="form-group">
     <%= label f, :venue_id, class: "control-label" %>
     <%= select f, :venue_id,
-      [{"...pick venue:", ""} | Enum.into(@all_venues, [], &({"#{&1.location} — #{&1.name}", &1.id}))],
+      venue_select_list(@all_venues),
       default: selected_venue_id(@changeset.data.venue),
       class: "form-control"
     %>

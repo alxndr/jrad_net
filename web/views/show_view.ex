@@ -16,4 +16,12 @@ defmodule JradNet.ShowView do
   def title("show.html", %{conn: %{assigns: %{show: show}}}), do: Show.friendly_name(show)
   def title("edit.html", %{conn: %{assigns: %{show: show}}}), do: "Editing: #{Show.friendly_name(show)}"
   def title(_, _), do: nil # would be nice if this base case were implemented elsewhere ✨
+
+  def venue_select_list(venues) do
+    [
+      {"...pick venue:", ""}
+      |
+      Enum.into(venues, [], &({"#{&1.location} — #{&1.name}", &1.id}))
+    ]
+  end
 end
