@@ -26,7 +26,8 @@ defmodule JradNet.Set do
   @doc """
   Return the Sets which were played in the given `show`.
   """
-  def from_show(show) do
+  @spec all_from_show(Show) :: [Set]
+  def all_from_show(show) do
     (from set in __MODULE__,
       where: set.show_id == ^show.id,
       order_by: [asc: set.which]

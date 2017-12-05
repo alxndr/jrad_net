@@ -48,7 +48,7 @@ defmodule JradNet.ShowController do
       Show
       |> Repo.get(id)
       |> Repo.preload(:venue)
-    sets = Set.from_show(show)
+    sets = Set.all_from_show(show)
     render conn, "show.html",
       show: show,
       sets: sets,
