@@ -39,6 +39,9 @@ html[data-path^="/songs/"] ul {
 }
 
 /* editing things */
+html[data-path^="/shows/"] form[action^="/shows/"] label[for^="show_which"] {
+  padding: 0.5em;
+}
 .alert {
   display: flex;
 }

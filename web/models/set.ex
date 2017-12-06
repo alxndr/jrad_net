@@ -36,6 +36,16 @@ defmodule JradNet.Set do
     |> Repo.all
   end
 
+  def from_show(_show, nil), do: raise "unexpected nil"
+  def from_show(show, which) do
+    (from set in __MODULE__,
+      where: set.show_id == ^show.id,
+      where: set.which == ^which,
+      limit: 1
+    )
+    |> Repo.one
+  end
+
   @doc """
   Load the associated SongPerformances and Songs of a set query.
   """

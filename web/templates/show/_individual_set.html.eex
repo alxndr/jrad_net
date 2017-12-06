@@ -1,0 +1,7 @@
+<ol class="set">
+  <%= for song_performance <- @performances do %>
+    <li><%= song_performance.song.name %>
+      <%= link "⋯", to: song_path(@conn, :show, song_performance.song) %>
+    </li>
+  <% end %>
+</ol>

@@ -1,5 +1,8 @@
 defmodule JradNet.SongPerformance do
   use JradNet.Web, :model
+  alias JradNet.{
+    Repo,
+  }
 
   schema "song_performances" do
     belongs_to :set, JradNet.Set
@@ -27,4 +30,11 @@ defmodule JradNet.SongPerformance do
   end
 
   def get(id), do: Repo.get!(__MODULE__, id)
+
+  def last_from_set(set) do
+    set = Repo.preload(set, :song_performances)
+    set.song_performances
+    |> List.last
+  end
+
 end

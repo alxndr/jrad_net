@@ -3,6 +3,8 @@ defmodule JradNet.ShowController do
   alias JradNet.{
     Set,
     Show,
+    Song,
+    SongPerformance,
     Venue,
   }
 
@@ -57,8 +59,12 @@ defmodule JradNet.ShowController do
   end
 
   def edit(conn, %{"id" => id}) do
-    show = Show.get_with_venue(id)
+    show = Show.get_with_venue_and_sets(id)
     changeset = Show.changeset(show)
+    all_songs =
+      Song
+      |> Song.order_by_name
+      |> Repo.all
     all_venues =
       Venue
       |> Venue.order_by_location
@@ -66,11 +72,12 @@ defmodule JradNet.ShowController do
     render conn, "edit.html",
       show: show,
       changeset: changeset,
+      all_songs: all_songs,
       all_venues: all_venues
   end
 
-  def update(conn, %{"id" => id, "show" => show_params}) do
-    show = Show.get_with_venue(id)
+  def update(conn, %{"id" => id, "show" => show_params} = params) do
+    show = Show.get_with_venue_and_sets(id)
     show
     |> Show.changeset(show_params)
     |> Repo.update
@@ -107,10 +114,25 @@ defmodule JradNet.ShowController do
         else
           "Show updated successfully."
         end
+        # TODO these could be separate &update/2 definitions
+        if show_params["new_set"] && show_params["which"] do # TODO is this old?
+          Repo.insert!(%Set{which: show_params["which"], show: show})
+        end
+        if show_params["new_song_id"] && params["new_song"]["set"] do
+          new_song = Song.get(show_params["new_song_id"])
+          set = Set.from_show(show, params["new_song"]["set"])
+          last_track = SongPerformance.last_from_set(set)
+          %SongPerformance{song: new_song, set: set}
+          |> Repo.insert!
+        end
         conn
         |> put_flash(:info, flash_message)
         |> redirect(to: show_path(conn, :show, show))
       {:error, changeset} ->
+        all_songs =
+          Song
+          |> Song.order_by_name
+          |> Repo.all
         all_venues =
           Venue
           |> Venue.order_by_location
@@ -118,6 +140,7 @@ defmodule JradNet.ShowController do
         render conn, "edit.html",
           show: show,
           changeset: changeset,
+          all_songs: all_songs,
           all_venues: all_venues
     end
   end

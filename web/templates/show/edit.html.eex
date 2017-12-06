@@ -6,4 +6,44 @@
   all_venues: @all_venues
 %>
 
+<h3>Setlist</h4>
+
+<%= for set <- @show.sets do %>
+  <h4><%= JradNet.Set.pretty_name(set.which) %></h4>
+  <%= render "_individual_set.html", conn: @conn, performances: set.song_performances %>
+  <%= form_for @changeset, show_path(@conn, :update, @show), fn f -> %>
+    <%= hidden_input :new_song, :set, value: set.which %>
+    <div class="form-group">
+      <h5><%= label f, :new_song_id, class: "control-label" %></h5>
+      <%= select f, :new_song_id,
+        song_select_list(@all_songs),
+        default: "",
+        class: "form-control"
+      %>
+      <%= error_tag f, :venue %>
+    </div>
+    <div class="form-group">
+      <%= submit "Submit", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= form_for @changeset, show_path(@conn, :update, @show), fn f -> %>
+  <div class="form-group">
+    <%= label f, :which, "Add Set:", class: "control-label" %>
+    <%= for {code, value} <- radio_button_values_for_sets do %>
+      <%= label f, code do %>
+        <%# TODO narrow this down... can only add next set/encore %>
+        <%= radio_button f, :which, value, disabled: is_set_defined_in_show?(@show, value) %>
+        <%= set_name(value) %>
+      <% end %>
+    <% end %>
+    <%= error_tag f, :which %>
+  </div>
+  <%= hidden_input f, :new_set %>
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
 <%= link "Back", to: show_path(@conn, :index), class: "btn" %>

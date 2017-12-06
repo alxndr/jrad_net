@@ -26,9 +26,9 @@ defmodule JradNet.Song do
   def readable_name(song) do
     if song.author do
       author = if song.author === "(trad)", do: "traditonal", else: song.author
-      ~s'"#{song.name}" (#{author})'
+      ~s'#{song.name} (#{author})'
     else
-      ~s'"#{song.name}"'
+      song.name
     end
   end
 
@@ -39,5 +39,9 @@ defmodule JradNet.Song do
     __MODULE__
     |> Repo.get!(id)
     |> Repo.preload([{:song_performances, [{:set, [{:show, :venue}]}]}])
+  end
+
+  def order_by_name(song_query) do
+    from song in song_query, order_by: [asc: song.name]
   end
 end

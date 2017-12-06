@@ -3,12 +3,14 @@ defmodule JradNet.Show do
   use Timex
   alias JradNet.{
     Repo,
+    Set,
     Venue,
   }
 
   schema "shows" do
     field :date, :naive_datetime
     belongs_to :venue, Venue, on_replace: :update
+    has_many :sets, Set
     # TODO may be part of an Event (e.g. High Sierra, Songs of Love Benefit...)
 
     timestamps()
@@ -52,9 +54,10 @@ defmodule JradNet.Show do
     end
   end
 
-  def get_with_venue(id) do
+  def get_with_venue_and_sets(id) do
     __MODULE__
     |> Repo.get!(id)
     |> Repo.preload(:venue)
+    |> Repo.preload([{:sets, [{:song_performances, :song}]}])
   end
 end
