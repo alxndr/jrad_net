@@ -18,3 +18,7 @@ defmodule EctoHelpers do
     end
   end
 end
+
+IEx.configure(
+  default_prompt: "\n#{IEx.configuration[:default_prompt]}" # newline between prompts
+)
