@@ -1,7 +1,6 @@
 defmodule JradNet.VenueController do
   use JradNet.Web, :controller # Repo
   alias JradNet.{
-    Show,
     Venue,
   }
 
