@@ -1,4 +1,5 @@
 %{"apex": {:hex, :apex, "1.1.0", "d7a03b8d3e4d9241bd33d986f7bc440f32987ca92dfbec07d491f85593791c82", [:mix], []},
+  "arbor": {:hex, :arbor, "1.0.5", "7c436090b84c48dee38659ad492ddbef128245b76f651a25b3edb12bec04f701", [:mix], [{:ecto, ">= 2.0.0", [hex: :ecto, optional: false]}, {:postgrex, ">= 0.0.0", [hex: :postgrex, optional: false]}]},
   "certifi": {:hex, :certifi, "2.0.0", "a0c0e475107135f76b8c1d5bc7efb33cd3815cb3cf3dea7aefdd174dabead064", [:rebar3], []},
   "combine": {:hex, :combine, "0.10.0", "eff8224eeb56498a2af13011d142c5e7997a80c8f5b97c499f84c841032e429f", [:mix], []},
   "connection": {:hex, :connection, "1.0.4", "a1cae72211f0eef17705aaededacac3eb30e6625b04a6117c1b2db6ace7d5976", [:mix], []},
