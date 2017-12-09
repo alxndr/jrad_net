@@ -54,10 +54,19 @@ defmodule JradNet.Show do
     end
   end
 
+  def all_with_venue_and_sets do
+    __MODULE__
+    |> Ecto.Query.order_by([show], desc: show.date)
+    |> Repo.all
+    |> Repo.preload([:venue, :sets])
+  end
+
   def get_with_venue_and_sets(id) do
+    # TODO only preload sets/perfs/songs if associations exist...
     __MODULE__
     |> Repo.get!(id)
     |> Repo.preload(:venue)
+    |> Repo.preload([sets: (from s in Set, order_by: [asc: s.which])])
     |> Repo.preload([{:sets, [{:song_performances, :song}]}])
   end
 end

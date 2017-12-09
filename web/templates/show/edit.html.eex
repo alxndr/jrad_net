@@ -1,14 +1,6 @@
 <h2>Edit show</h2>
 
-<%= render "form.html",
-  changeset: @changeset,
-  action: show_path(@conn, :update, @show),
-  all_venues: @all_venues
-%>
-
-<h3>Setlist</h4>
-
-<%= for set <- @show.sets do %>
+<%= for set <- @sets do %>
   <h4><%= JradNet.Set.pretty_name(set.which) %></h4>
   <%= render "_individual_set.html", conn: @conn, performances: set.song_performances %>
   <%= form_for @changeset, show_path(@conn, :update, @show), fn f -> %>
@@ -45,5 +37,11 @@
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<%= render "form.html",
+  changeset: @changeset,
+  action: show_path(@conn, :update, @show),
+  all_venues: @all_venues
+%>
 
 <%= link "Back", to: show_path(@conn, :index), class: "btn" %>

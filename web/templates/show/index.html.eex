@@ -5,24 +5,27 @@
 <table class="table">
   <thead>
     <tr>
-      <th></th>
-      <th>Date</th>
+      <th class="text-right"></th>
+      <th class="text-right">Date</th>
       <th>Venue</th>
+      <th>Sets</th>
     </tr>
   </thead>
   <tbody>
 <%= for show <- @shows do %>
     <tr>
-      <td><%= link "Edit", to: show_path(@conn, :edit, show), class: "btn btn-default btn-xs" %></td>
-      <td><%= link readable_date(show), to: show_path(@conn, :show, show) %></td>
+      <td class="text-right"><%= link "Edit", to: show_path(@conn, :edit, show), class: "btn btn-default btn-xs" %></td>
+      <td class="text-right"><%= link readable_date(show), to: show_path(@conn, :show, show) %></td>
       <td>
-        <%= if show.venue && show.venue.name do %>
-          <%= link show.venue.name, to: venue_path(@conn, :show, show.venue) %>
+        <%= if show.venue do %>
+          <%= if show.venue.name, do: link show.venue.name, to: venue_path(@conn, :show, show.venue) %>
+          <%= if show.venue.location, do: show.venue.location %>
         <% end %>
       </td>
       <td>
-        <%= if show.venue && show.venue.location do %>
-          <%= show.venue.location %>
+        <%= if show.sets && length(show.sets) > 0 do %>
+          <%# TODO "#{length(full_sets)}#{if length(encores) > 0, do: length(encores)}" %>
+          <%= link length(show.sets), to: show_path(@conn, :edit, show) %>
         <% end %>
       </td>
     </tr>
@@ -30,4 +33,4 @@
   </tbody>
 </table>
 
-<%= link "New show", to: show_path(@conn, :new), class: "btn" %>
+<%= link "New show", to: show_path(@conn, :new), class: "btn btn-default" %>

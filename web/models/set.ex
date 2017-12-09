@@ -48,6 +48,52 @@ defmodule JradNet.Set do
   end
 
   @doc """
+  Recursive function that orders the list according to a linked scheme between
+  the `id` and `antecedent_id` properties of elements. The second parameter is
+  a convenience dictionary.
+  """
+  def build_linked_list([head | _] = list, song_dict) do
+    song_dict[head.id]
+    |> case do
+      nil -> # base case, we're done
+        Enum.reverse(list)
+      new_head -> # recurse
+        build_linked_list([new_head | list], song_dict)
+    end
+  end
+
+  def sort_linked_song_list(list, root) when length(list) <= 1, do: [root | list]
+  def sort_linked_song_list(list, root) do
+    # Assumes that the shape of list elements is %{:antecedent_id, :id}.
+    # Doesn't care about orphans, only uses the first element without an antecedent.
+    songs_by_antecedent = Enum.into(list, %{}, &({&1.antecedent_id, &1}));
+    build_linked_list([root], songs_by_antecedent)
+  end
+
+  @doc """
+  Put a set's songs in order.
+  """
+  def arrange_songs(set) do
+    set = Repo.preload(set, [:show, :opener])
+    set.opener
+    |> Repo.preload(:song)
+    |> case do
+      nil ->
+        IO.puts "nnnnnnnnnnnnoope no opener"
+        %{song_performances: [], which: set.which}
+      opener ->
+        IO.puts "yyyyyyyyyyyyyyyyes we have an opener"
+        songs =
+          opener
+          |> SongPerformance.descendants
+          |> Repo.all
+          |> Repo.preload(:song)
+          |> sort_linked_song_list(opener)
+        %{song_performances: songs, which: set.which} # mega hacky
+    end
+  end
+
+  @doc """
   Load the associated SongPerformances and Songs of a set query.
   """
   def load_songs(query) do

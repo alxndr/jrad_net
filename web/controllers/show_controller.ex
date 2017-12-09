@@ -9,11 +9,7 @@ defmodule JradNet.ShowController do
   }
 
   def index(conn, _params) do
-    shows =
-      Show
-      |> Ecto.Query.order_by([s], desc: s.date)
-      |> Repo.all
-      |> Repo.preload(:venue) # ...or something
+    shows = Show.all_with_venue_and_sets()
     render conn, "index.html", shows: shows
   end
 
@@ -46,11 +42,8 @@ defmodule JradNet.ShowController do
   end
 
   def show(conn, %{"id" => id}) do
-    show =
-      Show
-      |> Repo.get(id)
-      |> Repo.preload(:venue)
-    sets = Set.all_from_show(show)
+    show = Show.get_with_venue_and_sets(id)
+    sets = Enum.map(show.sets, &Set.arrange_songs/1)
     render conn, "show.html",
       show: show,
       sets: sets,
@@ -60,6 +53,7 @@ defmodule JradNet.ShowController do
 
   def edit(conn, %{"id" => id}) do
     show = Show.get_with_venue_and_sets(id)
+    sets = Enum.map(show.sets, &Set.arrange_songs/1)
     changeset = Show.changeset(show)
     all_songs =
       Song
@@ -71,6 +65,7 @@ defmodule JradNet.ShowController do
       |> Repo.all
     render conn, "edit.html",
       show: show,
+      sets: sets,
       changeset: changeset,
       all_songs: all_songs,
       all_venues: all_venues
