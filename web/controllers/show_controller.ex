@@ -115,15 +115,36 @@ defmodule JradNet.ShowController do
           "Show updated successfully."
         end
         # TODO these could be separate &update/2 definitions
-        if show_params["new_set"] && show_params["which"] do # TODO is this old?
+        if show_params["new_set"] && show_params["which"] do
           Repo.insert!(%Set{which: show_params["which"], show: show})
         end
         if show_params["new_song_id"] && params["new_song"]["set"] do
+          # this should probably all be in SongPerformance
           new_song = Song.get(show_params["new_song_id"])
           set = Set.from_show(show, params["new_song"]["set"])
-          last_track = SongPerformance.last_from_set(set)
-          %SongPerformance{song: new_song, set: set}
-          |> Repo.insert!
+          SongPerformance.last_from_set(set)
+          |> case do
+            nil ->
+              opener =
+                %SongPerformance{}
+                |> SongPerformance.changeset(%{position: 1, song_id: new_song.id, set_id: set.id})
+                |> Ecto.Changeset.put_assoc(:song, new_song)
+                |> Ecto.Changeset.put_assoc(:set, set)
+                |> Repo.insert!
+              set
+              |> Repo.preload(:opener)
+              |> Set.changeset(%{})
+              |> Ecto.Changeset.put_assoc(:opener, opener)
+              |> Repo.update!
+            last_track ->
+              position = last_track.position + 1
+              %SongPerformance{}
+              |> SongPerformance.changeset(%{position: position, song_id: new_song.id, set_id: set.id, antecedent: last_track.id})
+              |> Ecto.Changeset.put_assoc(:song, new_song)
+              |> Ecto.Changeset.put_assoc(:set, set)
+              |> Ecto.Changeset.put_assoc(:antecedent, last_track)
+              |> Repo.insert!
+          end
         end
         conn
         |> put_flash(:info, flash_message)

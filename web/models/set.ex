@@ -10,6 +10,7 @@ defmodule JradNet.Set do
     field :which,   :string
     belongs_to :show, Show
     has_many :song_performances, SongPerformance
+    belongs_to :opener, SongPerformance
 
     timestamps()
   end
@@ -19,8 +20,8 @@ defmodule JradNet.Set do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:show_id, :which])
-    |> validate_required([:show_id, :which])
+    |> cast(params, [:show_id, :opener_id, :which])
+    |> validate_required([:show_id])
   end
 
   @doc """
