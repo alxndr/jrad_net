@@ -148,7 +148,7 @@ defmodule JradNet.ShowController do
         end
         conn
         |> put_flash(:info, flash_message)
-        |> redirect(to: show_path(conn, :show, show))
+        |> redirect(to: show_path(conn, :edit, show))
       {:error, changeset} ->
         all_songs =
           Song
