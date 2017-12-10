@@ -32,10 +32,10 @@ defmodule JradNet.ShowController do
     |> Show.changeset(show_params)
     |> Repo.insert
     |> case do
-      {:ok, _show} ->
+      {:ok, show} ->
         conn
-        |> put_flash(:info, "Show created")
-        |> redirect(to: show_path(conn, :index)) # TODO mark the new show somehow
+        |> put_flash(:info, "Show created! Add some sets and then songs.")
+        |> redirect(to: show_path(conn, :edit, show))
       {:error, changeset} ->
         render conn, "new.html", changeset: changeset, all_venues: all_venues
     end

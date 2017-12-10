@@ -39,12 +39,12 @@ defmodule JradNet.SongPerformance do
   a convenience dictionary.
   """
   def build_linked_list([head | _] = list, song_dict) do
-    song_dict[head.id]
-    |> case do
+    case(song_dict[head.id]) do
       nil -> # base case, we're done
         Enum.reverse(list)
       new_head -> # recurse
-        build_linked_list([new_head | list], song_dict)
+        [new_head | list]
+        |> build_linked_list(song_dict)
     end
   end
 
