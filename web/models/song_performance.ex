@@ -27,13 +27,42 @@ defmodule JradNet.SongPerformance do
     struct
     |> cast(params, [:set_id, :song_id, :antecedent_id, :position])
     |> validate_required([:set_id, :song_id])
-    # unique position by set...
-    # |> unique_constraint(:position, name: :song_performances_position_set_id)
-    # ?
+    |> unique_constraint(:antecedent_id)
     # https://hexdocs.pm/ecto/Ecto.Changeset.html#unique_constraint/3
   end
 
   def get(id), do: Repo.get!(__MODULE__, id)
+
+  @doc """
+  Recursive function that orders the list according to a linked scheme between
+  the `id` and `antecedent_id` properties of elements. The second parameter is
+  a convenience dictionary.
+  """
+  def build_linked_list([head | _] = list, song_dict) do
+    song_dict[head.id]
+    |> case do
+      nil -> # base case, we're done
+        Enum.reverse(list)
+      new_head -> # recurse
+        build_linked_list([new_head | list], song_dict)
+    end
+  end
+
+  def sort_linked_song_list(list, root) when length(list) <= 1, do: [root | list]
+  def sort_linked_song_list(list, root) do
+    # Assumes that the shape of list elements is %{:antecedent_id, :id}.
+    # Doesn't care about orphans, only uses the first element without an antecedent.
+    songs_by_antecedent = Enum.into(list, %{}, &({&1.antecedent_id, &1}));
+    build_linked_list([root], songs_by_antecedent)
+  end
+
+  def with_all_following(song_performance) do
+    song_performance
+    |> __MODULE__.descendants
+    |> Repo.all
+    |> Repo.preload(:song)
+    |> sort_linked_song_list(song_performance)
+  end
 
   def last_from_set(set) do
     set = Repo.preload(set, :opener)
@@ -41,8 +70,7 @@ defmodule JradNet.SongPerformance do
       nil -> nil
       opener ->
         opener
-        |> __MODULE__.descendants
-        |> Repo.all
+        |> with_all_following
         |> List.last
         |> case do
           nil -> opener # only one song has been played
