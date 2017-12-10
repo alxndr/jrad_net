@@ -1,3 +1,5 @@
+<%= link "Back", to: show_path(@conn, :index), class: "btn btn-default" %>
+
 <h2>Edit show</h2>
 
 <%= for set <- @sets do %>
@@ -23,9 +25,9 @@
 <%= form_for @changeset, show_path(@conn, :update, @show), fn f -> %>
   <div class="form-group">
     <%= label f, :which, "Add Set:", class: "control-label" %>
-    <%= for {code, value} <- radio_button_values_for_sets do %>
+    <%= for {code, value} <- radio_button_values_for_sets() do %>
       <%= label f, code do %>
-        <%# TODO narrow this down... can only add next set/encore %>
+        <%# TODO narrow this down... can only add sdchk/set/encore 1 greater than what already is set up %>
         <%= radio_button f, :which, value, disabled: is_set_defined_in_show?(@show, value) %>
         <%= set_name(value) %>
       <% end %>
@@ -43,5 +45,3 @@
   action: show_path(@conn, :update, @show),
   all_venues: @all_venues
 %>
-
-<%= link "Back", to: show_path(@conn, :index), class: "btn" %>

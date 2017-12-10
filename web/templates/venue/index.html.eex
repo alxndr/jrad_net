@@ -1,6 +1,6 @@
 <h2>All Venues</h2>
 
-<%= link "New venue", to: venue_path(@conn, :new) %>
+<%= link "New venue", to: venue_path(@conn, :new), class: "btn btn-default" %>
 
 <table class="table">
   <thead>
@@ -8,8 +8,8 @@
       <th></th>
       <th>Name</th>
       <th>Location</th>
-      <th>Capacity</th>
-      <th>Performances</th>
+      <th class="text-right">👥</th>
+      <th class="text-right">×</th>
     </tr>
   </thead>
   <tbody>
@@ -28,4 +28,4 @@
   </tbody>
 </table>
 
-<%= link "New venue", to: venue_path(@conn, :new) %>
+<%= link "New venue", to: venue_path(@conn, :new), class: "btn btn-default" %>

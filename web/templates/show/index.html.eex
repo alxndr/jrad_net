@@ -1,6 +1,6 @@
 <h2><%= length(@shows) %> Shows</h2>
 
-<%= link "New show", to: show_path(@conn, :new), class: "btn" %>
+<%= link "New show", to: show_path(@conn, :new), class: "btn btn-default" %>
 
 <table class="table">
   <thead>

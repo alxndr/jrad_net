@@ -1,4 +1,4 @@
-<%= link "Edit", to: song_path(@conn, :edit, @song), class: "btn" %>
+<%= link "Edit", to: song_path(@conn, :edit, @song), class: "btn btn-default" %>
 
 <h2>"<%= @song.name %>"</h2>
 
@@ -32,4 +32,4 @@
 
 <hr>
 
-<p><%= link "All Songs", to: song_path(@conn, :index), class: "btn btn-lg" %></p>
+<p><%= link "All Songs", to: song_path(@conn, :index), class: "btn btn-default" %></p>
