@@ -14,8 +14,7 @@ defmodule JradNet.ShowController do
   end
 
   def new(conn, _params) do
-    changeset =
-      Show.changeset(%Show{})
+    changeset = Show.changeset(%Show{})
     all_venues =
       Venue
       |> Venue.order_by_location
@@ -94,7 +93,7 @@ defmodule JradNet.ShowController do
             |> Ecto.Changeset.put_assoc(:venue, venue)
             |> Repo.update
             |> case do
-              {:ok, show} -> "Show/venue updated successfully."
+              {:ok, _show} -> "Show/venue updated successfully."
               {:error, changeset} ->
                 IO.puts ~s[
                   !!!!! could not associate show #{show.id} and venue #{venue.id}

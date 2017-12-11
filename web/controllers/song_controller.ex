@@ -5,8 +5,10 @@ defmodule JradNet.SongController do
   }
 
   def index(conn, _params) do
-    songs = Repo.all(Song)
-            |> Repo.preload(:song_performances)
+    songs =
+      Song
+      |> Repo.all
+      |> Repo.preload(:song_performances)
     render conn, "index.html", songs: songs
   end
 

@@ -9,7 +9,7 @@ defmodule JradNet.Set do
   schema "sets" do
     field :which,   :string
     belongs_to :show, Show
-    has_many :song_performances, SongPerformance
+    has_many :song_performances, SongPerformance # TODO on delete a Set, these should go too
     belongs_to :opener, SongPerformance
 
     timestamps()
@@ -37,7 +37,8 @@ defmodule JradNet.Set do
     |> Repo.all
   end
 
-  def from_show(_show, nil), do: raise "unexpected nil"
+  def from_show(nil, _which), do: raise "unexpected nil (show)"
+  def from_show(_show, nil), do: raise "unexpected nil (which)"
   def from_show(show, which) do
     (from set in __MODULE__,
       where: set.show_id == ^show.id,

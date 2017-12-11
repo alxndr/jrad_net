@@ -36,6 +36,7 @@ defmodule JradNet.ShowView do
 
   def radio_button_values_for_sets do
     [
+      # TODO {:which_0, "0"} # soundcheck
       {:which_1, "1"},
       {:which_2, "2"},
       {:which_3, "3"},
@@ -54,4 +55,15 @@ defmodule JradNet.ShowView do
   end
 
   def set_name(which), do: Set.pretty_name(which)
+
+  def count_of_sets_and_encores(show) do
+    grouped =
+      show.sets
+      |> Enum.group_by(&(if String.starts_with?(&1.which, "e"), do: :encores, else: :sets))
+    if not is_nil(grouped[:encores]) && length(grouped[:encores]) > 0 do
+      "#{length(grouped[:sets])}+#{length(grouped[:encores])}"
+    else
+      length(grouped[:sets])
+    end
+  end
 end

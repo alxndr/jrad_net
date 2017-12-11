@@ -22,12 +22,7 @@
           <%= if show.venue.location, do: show.venue.location %>
         <% end %>
       </td>
-      <td>
-        <%= if show.sets && length(show.sets) > 0 do %>
-          <%# TODO "#{length(full_sets)}#{if length(encores) > 0, do: length(encores)}" %>
-          <%= link length(show.sets), to: show_path(@conn, :edit, show) %>
-        <% end %>
-      </td>
+      <td><%= count_of_sets_and_encores(show) %></td>
     </tr>
 <% end %>
   </tbody>
