@@ -22,6 +22,7 @@ defmodule JradNet.Router do
 
     resources "/shows", ShowController
     resources "/songs", SongController
+    resources "/users", UserController # TODO admin-only
     resources "/venues", VenueController
   end
 end
