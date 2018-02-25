@@ -2,7 +2,11 @@ defmodule JradNet.UserControllerTest do
   use JradNet.ConnCase
 
   alias JradNet.User
-  @valid_attrs %{email: "some content", password_digest: "some content", username: "some content"}
+  @valid_attrs %{
+    email: "some content",
+    password_digest: "some content",
+    username: "some content",
+  }
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
