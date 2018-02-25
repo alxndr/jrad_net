@@ -71,6 +71,10 @@ config :jrad_net, JradNet.Repo,
   database: "",
   pool_size: 1 # must be kept at 1 for free tier on Gigalixir
 
+
+# increased rounds of encryption for production
+config :comeonin, bcrypt_log_rounds: 15
+
 config :libcluster,
   topologies: [
     k8s_example: [

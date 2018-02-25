@@ -17,3 +17,6 @@ config :jrad_net, JradNet.Repo,
   database: "jrad_net_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# reduce number of encryption rounds ONLY IN TESTS
+config :comeonin, bcrypt_log_rounds: 4
