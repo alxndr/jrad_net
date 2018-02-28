@@ -35,8 +35,15 @@ defmodule JradNet.SessionController do
 
   def error_signing_in(conn) do
     conn
-    |> put_session(:current_user, nil)
+    |> put_session(:current_user, nil) # diff b/t this and delete_sesion/1 ?
     |> put_flash(:error, @message_error_login)
     |> redirect(to: page_path(conn, :index)) # TODO redirect to login page??
+  end
+
+  def delete(conn, _params) do
+    conn
+    |> delete_session(:current_user)
+    |> put_flash(:info, "Logged out")
+    |> redirect(to: page_path(conn, :index)) # TODO redirect to wherever you were when you clicked logout
   end
 end

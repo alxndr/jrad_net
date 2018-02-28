@@ -25,6 +25,6 @@ defmodule JradNet.Router do
     resources "/users", UserController # TODO admin-only
     resources "/venues", VenueController
 
-    resources "/sessions", SessionController, only: [:new, :create]
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 end

@@ -22,6 +22,16 @@
     <div class="container">
 
       <a href="/"><img id="logo" src="https://i.imgur.com/tvtgYVY.png" alt="Good Ol' Almost Dead" /></a>
+      <%= if (user = current_user(@conn)) do %>
+        <p class="userinfo">Logged in as
+          <span><%= user.username %></span>...
+          <%= link "Log out?", to: session_path(@conn, :delete, user.id), method: :delete, data: [confirm: "Really log out?"], class: "btn btn-danger btn-xs" %>
+        </p>
+      <% else %>
+        <p class="userinfo">
+          <%= link "Log in", to: session_path(@conn, :new) %>
+        </p>
+      <% end %>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
