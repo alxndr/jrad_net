@@ -1,7 +1,7 @@
 defmodule JradNet.SessionController do
   use JradNet.Web, :controller
   alias JradNet.User
-  import Comeonin.Bcrypt, only: [checkpw: 2]
+  import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
   plug :scrub_params, "user" when action in [:create]
 
@@ -18,6 +18,7 @@ defmodule JradNet.SessionController do
     |> sign_in(password, conn)
   end
   def create(conn, _) do
+    dummy_checkpw()
     conn
     |> login_fail()
   end
@@ -30,6 +31,7 @@ defmodule JradNet.SessionController do
       |> put_flash(:info, "logged in")
       |> redirect(to: page_path(conn, :index))
     else
+      # TODO should we dummy_checkpw() again?
       conn
       |> login_fail()
     end
@@ -40,6 +42,7 @@ defmodule JradNet.SessionController do
     |> put_session(:current_user, nil) # diff b/t this and delete_sesion/1 ?
     |> put_flash(:error, @message_error_login)
     |> redirect(to: page_path(conn, :index)) # TODO redirect to login page??
+    |> halt() # "sanity against double render issues"
   end
 
   def delete(conn, _params) do
