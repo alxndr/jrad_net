@@ -24,5 +24,7 @@ defmodule JradNet.Router do
     resources "/songs", SongController
     resources "/users", UserController # TODO admin-only
     resources "/venues", VenueController
+
+    resources "/sessions", SessionController, only: [:new, :create]
   end
 end

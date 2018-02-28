@@ -46,6 +46,9 @@ html[data-path^="/shows/"] form[action^="/shows/"] label[for^="show_which"] {
   display: flex;
 }
 
+html[data-path^="/users"] form[action="/users"] .help-block {
+  background: pink;
+}
 
 
 html[data-path="/"] #logo {
