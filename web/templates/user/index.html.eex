@@ -3,23 +3,19 @@
 <table class="table">
   <thead>
     <tr>
+      <th></th>
       <th>Username</th>
       <th>Email</th>
-      <th>Password digest</th>
-
       <th></th>
     </tr>
   </thead>
   <tbody>
 <%= for user <- @users do %>
     <tr>
-      <td><%= user.username %></td>
+      <td><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></td>
+      <td><%= link user.username, to: user_path(@conn, :show, user) %></td>
       <td><%= user.email %></td>
-      <td><%= user.password_digest %></td>
-
       <td class="text-right">
-        <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %>
         <%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>
