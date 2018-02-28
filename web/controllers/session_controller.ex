@@ -11,16 +11,18 @@ defmodule JradNet.SessionController do
     render conn, "new.html", changeset: User.changeset(%User{})
   end
 
-  def create(conn, %{"user" => user_params}) do
+  def create(conn, %{"user" => %{"username" => username, "password" => password}})
+  when not is_nil(username) and not is_nil(password) do
     User
-    |> Repo.get_by(username: user_params["username"])
-    |> sign_in(user_params["password"], conn)
+    |> Repo.get_by(username: username)
+    |> sign_in(password, conn)
+  end
+  def create(conn, _) do
+    conn
+    |> login_fail()
   end
 
-  def sign_in(user, password, conn) when is_nil(user) or is_nil(password) do
-    conn
-    |> error_signing_in()
-  end
+  def sign_in(nil, _, conn), do: login_fail(conn)
   def sign_in(user, password, conn) do
     if checkpw(password, user.password_digest) do
       conn
@@ -29,11 +31,11 @@ defmodule JradNet.SessionController do
       |> redirect(to: page_path(conn, :index))
     else
       conn
-      |> error_signing_in()
+      |> login_fail()
     end
   end
 
-  def error_signing_in(conn) do
+  def login_fail(conn) do
     conn
     |> put_session(:current_user, nil) # diff b/t this and delete_sesion/1 ?
     |> put_flash(:error, @message_error_login)
