@@ -10,16 +10,16 @@
     </tr>
   </thead>
   <tbody>
-<%= for user <- @users do %>
-    <tr>
-      <td><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></td>
-      <td><%= link user.username, to: user_path(@conn, :show, user) %></td>
-      <td><%= user.email %></td>
-      <td class="text-right">
-        <%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
+    <%= for user <- @users do %>
+      <tr>
+        <td><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></td>
+        <td><%= link user.username, to: user_path(@conn, :show, user) %></td>
+        <td><%= user.email %></td>
+        <td class="text-right">
+          <%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
