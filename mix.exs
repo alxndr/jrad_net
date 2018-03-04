@@ -52,7 +52,7 @@ defmodule JradNet.Mixfile do
       {:distillery, "~> 1.0.0"},
       {:gettext, "~> 0.11"},
       {:libcluster, "~> 2.0.3"},
-      {:phoenix, "~> 1.2.2"},
+      {:phoenix, "1.3.0"},
       {:phoenix_ecto, "~> 3.0"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
