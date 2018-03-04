@@ -24,6 +24,7 @@ defmodule JradNet.SessionController do
   end
 
   def sign_in(nil, _, conn), do: login_fail(conn)
+  def sign_in(_, nil, conn), do: login_fail(conn)
   def sign_in(user, password, conn) do
     if checkpw(password, user.password_digest) do
       conn

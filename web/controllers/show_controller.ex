@@ -5,8 +5,12 @@ defmodule JradNet.ShowController do
     Show,
     Song,
     SongPerformance,
+    User,
     Venue,
   }
+
+  plug :authorize_user when action in [:new, :create, :update, :edit, :delete]
+  # TODO how to provide this to the view layer... then we can not even show the links
 
   def index(conn, _params) do
     shows = Show.all_with_venue_and_sets()
@@ -157,6 +161,24 @@ defmodule JradNet.ShowController do
           changeset: changeset,
           all_songs: all_songs,
           all_venues: all_venues
+    end
+  end
+
+  defp authorize_user(conn, _) do
+    user = get_session(conn, :current_user)
+    cond do
+      !user ->
+        conn
+        |> put_flash(:error, "gotta be logged in to do that")
+        |> redirect(to: session_path(conn, :new))
+        |> halt()
+      User.can(user, conn.method, conn.path_info, conn.path_params) ->
+        conn
+      true ->
+        conn
+        |> put_flash(:error, "can't do that")
+        |> redirect(to: page_path(conn, :index))
+        |> halt()
     end
   end
 end

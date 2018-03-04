@@ -56,6 +56,7 @@ defmodule JradNet.ShowView do
 
   def set_name(which), do: Set.pretty_name(which)
 
+  def count_of_sets_and_encores(%Show{sets: sets}) when length(sets) == 0, do: 0
   def count_of_sets_and_encores(show) do
     grouped =
       show.sets

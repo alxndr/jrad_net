@@ -9,6 +9,15 @@
   max-width: 13%;
 }
 
+.userinfo {
+  position: fixed;
+  top: 0.25em;
+  right: 0.25em;
+}
+.userinfo p {
+  display: inline;
+}
+
 .version {
   display: none;
 }
