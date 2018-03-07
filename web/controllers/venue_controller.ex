@@ -1,8 +1,11 @@
 defmodule JradNet.VenueController do
   use JradNet.Web, :controller # Repo
   alias JradNet.{
+    User,
     Venue,
   }
+
+  # plug :authorize_user when action in [:new, :create, :update, :edit, :delete]
 
   def index(conn, _params) do
     venues =
@@ -66,5 +69,27 @@ defmodule JradNet.VenueController do
     conn
     |> put_flash(:info, "Venue deleted successfully.")
     |> redirect(to: venue_path(conn, :index))
+  end
+
+  defp authorize_user(conn, _) do
+    user = get_session(conn, :current_user)
+    IO.puts "\n"
+    IO.puts "authorize_user"
+    IO.puts inspect user
+    IO.puts "\n"
+    cond do
+      !user ->
+        conn
+        |> put_flash(:error, "gotta be logged in to do that")
+        |> redirect(to: session_path(conn, :new))
+        |> halt()
+      User.can(user, conn.method, conn.path_info, conn.path_params) ->
+        conn
+      true ->
+        conn
+        |> put_flash(:error, "can't do that")
+        |> redirect(to: page_path(conn, :index))
+        |> halt()
+    end
   end
 end

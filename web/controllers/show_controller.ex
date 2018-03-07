@@ -13,8 +13,9 @@ defmodule JradNet.ShowController do
   # TODO how to provide this to the view layer... then we can not even show the links
 
   def index(conn, _params) do
+    current_user = get_session(conn, :current_user)
     shows = Show.all_with_venue_and_sets()
-    render conn, "index.html", shows: shows
+    render conn, "index.html", shows: shows, current_user: current_user
   end
 
   def new(conn, _params) do

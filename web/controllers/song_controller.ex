@@ -2,7 +2,10 @@ defmodule JradNet.SongController do
   use JradNet.Web, :controller
   alias JradNet.{
     Song,
+    User,
   }
+
+  # plug :authorize_user when action in [:new, :create, :update, :edit, :delete]
 
   def index(conn, _params) do
     songs =
@@ -41,5 +44,23 @@ defmodule JradNet.SongController do
     song = Song.get(id)
     changeset = Song.changeset(song)
     render conn, "edit.html", song: song, changeset: changeset
+  end
+
+  defp authorize_user(conn, _) do
+    user = get_session(conn, :current_user)
+    cond do
+      !user ->
+        conn
+        |> put_flash(:error, "gotta be logged in to do that")
+        |> redirect(to: session_path(conn, :new))
+        |> halt()
+      User.can(user, conn.method, conn.path_info, conn.path_params) ->
+        conn
+      true ->
+        conn
+        |> put_flash(:error, "can't do that")
+        |> redirect(to: page_path(conn, :index))
+        |> halt()
+    end
   end
 end

@@ -1,9 +1,26 @@
 defmodule JradNet.VenueControllerTest do
   use JradNet.ConnCase
 
-  alias JradNet.Venue
+  alias JradNet.{
+    # User,
+    Venue,
+  }
+
   @valid_attrs %{capacity: 42, location: "some content", name: "some content"}
   @invalid_attrs %{}
+
+  @fake_admin %{username: "crazyquilt"}
+
+  setup do
+    # %User{}
+    # |> User.changeset(%{username: "test", password: "test", password_confirmation: "test", email: "test@test"})
+    # |> Repo.insert
+    conn =
+      build_conn()
+      # |> get("/")
+      # |> put_session(:current_user, @fake_admin)
+    {:ok, conn: conn}
+  end
 
   test "index: lists all entries on index", %{conn: conn} do
     conn = get conn, venue_path(conn, :index)

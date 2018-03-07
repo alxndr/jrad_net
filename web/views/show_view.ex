@@ -4,6 +4,7 @@ defmodule JradNet.ShowView do
     Set,
     Show,
     Song,
+    User,
   }
 
   def readable_date(show), do: Show.readable_date(show)
@@ -25,6 +26,8 @@ defmodule JradNet.ShowView do
   def title("show.html", %{conn: %{assigns: %{show: show}}}), do: Show.friendly_name(show)
   def title("edit.html", %{conn: %{assigns: %{show: show}}}), do: "Editing: #{Show.friendly_name(show)}"
   def title(_, _), do: nil # would be nice if this base case were implemented elsewhere ✨
+
+  def user_can(user, action), do: User.can(user, nil, nil, nil)
 
   def venue_select_list(venues) do
     [
