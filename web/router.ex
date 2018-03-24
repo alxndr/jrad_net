@@ -10,7 +10,7 @@ defmodule JradNet.Router do
     plug :prayer_flag
   end
 
-  def prayer_flag(conn, _) do
+  def prayer_flag(conn, _) do # TODO Use the hex package
     conn
     |> Plug.Conn.put_resp_header("flag", "ཨོཾ་མ་ཎི་པདྨེ་ཧཱུྂ༔")
   end
@@ -22,6 +22,9 @@ defmodule JradNet.Router do
 
     resources "/shows", ShowController
     resources "/songs", SongController
+    resources "/users", UserController # TODO admin-only
     resources "/venues", VenueController
+
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 end

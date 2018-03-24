@@ -19,6 +19,7 @@ defmodule JradNet.Mixfile do
   def application do
     [mod: {JradNet, []},
      applications: [
+       :comeonin,
        :cowboy,
        :gettext,
        :libcluster,
@@ -45,11 +46,13 @@ defmodule JradNet.Mixfile do
     [
       {:apex, "~> 1.1.0", only: :dev},
       {:arbor, "~> 1.0.5"},
+      {:bcrypt_elixir, "~> 1.0"},
+      {:comeonin, "~> 4.0"}, # n.b. the tutorial uses 2.3
       {:cowboy, "~> 1.0"},
       {:distillery, "~> 1.0.0"},
       {:gettext, "~> 0.11"},
       {:libcluster, "~> 2.0.3"},
-      {:phoenix, "~> 1.2.1"},
+      {:phoenix, "1.3.0"},
       {:phoenix_ecto, "~> 3.0"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},

@@ -5,6 +5,7 @@ alias JradNet.{
   Show,
   Song,
   SongPerformance,
+  User,
   Venue,
 }
 

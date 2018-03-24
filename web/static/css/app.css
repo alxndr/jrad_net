@@ -9,6 +9,15 @@
   max-width: 13%;
 }
 
+.userinfo {
+  position: fixed;
+  top: 0.25em;
+  right: 0.25em;
+}
+.userinfo p {
+  display: inline;
+}
+
 .version {
   display: none;
 }
@@ -46,6 +55,9 @@ html[data-path^="/shows/"] form[action^="/shows/"] label[for^="show_which"] {
   display: flex;
 }
 
+html[data-path^="/users"] form[action="/users"] .help-block {
+  background: pink;
+}
 
 
 html[data-path="/"] #logo {

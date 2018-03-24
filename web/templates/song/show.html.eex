@@ -1,4 +1,4 @@
-<%= link "Edit", to: song_path(@conn, :edit, @song), class: "btn btn-default" %>
+<%= if user_can(@current_user, :edit_song), do: link "Edit", to: song_path(@conn, :edit, @song), class: "btn btn-default" %>
 
 <h2>"<%= @song.name %>"</h2>
 

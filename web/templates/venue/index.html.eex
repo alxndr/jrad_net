@@ -1,6 +1,6 @@
 <h2>All Venues</h2>
 
-<%= link "New venue", to: venue_path(@conn, :new), class: "btn btn-default" %>
+<%= if user_can(@current_user, :new_venue), do: link "New venue", to: venue_path(@conn, :new), class: "btn btn-default" %>
 
 <table class="table">
   <thead>
@@ -16,16 +16,14 @@
 <%= for venue <- @venues do %>
     <tr>
       <td>
-        <%= link "Edit", to: venue_path(@conn, :edit, venue), class: "btn btn-default btn-xs" %>
-        <%#= link "Delete", to: venue_path(@conn, :delete, venue), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%= if user_can(@current_user, :edit_venue), do: link "Edit", to: venue_path(@conn, :edit, venue), class: "btn btn-default btn-xs" %>
+        <%= if user_can(@current_user, :delete_venue), do: link "Delete", to: venue_path(@conn, :delete, venue), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
       <td><%= link venue.name, to: venue_path(@conn, :show, venue) %></td>
       <td><%= venue.location %></td>
       <td class="text-right"><%= venue.capacity %></td>
-      <td class="text-right"><%= length(venue.shows) %></td>
+      <td class="text-right"><%= link length(venue.shows), to: venue_path(@conn, :show, venue) %></td>
     </tr>
 <% end %>
   </tbody>
 </table>
-
-<%= link "New venue", to: venue_path(@conn, :new), class: "btn btn-default" %>
