@@ -1,4 +1,4 @@
-<%= link "New song", to: song_path(@conn, :new), class: "btn btn-default" %>
+<%= if user_can(@current_user, :new_song), do: link "New song", to: song_path(@conn, :new), class: "btn btn-default" %>
 
 <h1>All Songs</h1>
 
@@ -14,7 +14,7 @@
   <tbody>
 <%= for song <- @songs do %>
     <tr>
-      <td><%= link "Edit", to: song_path(@conn, :edit, song), class: "btn btn-default btn-xs" %></td>
+      <td><%= if user_can(@current_user, :edit_song), do: link "Edit", to: song_path(@conn, :edit, song), class: "btn btn-default btn-xs" %></td>
       <td><%= length(song.song_performances) %></td>
       <td><%= link song.name, to: song_path(@conn, :show, song) %></td>
       <td>

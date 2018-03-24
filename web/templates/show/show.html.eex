@@ -1,7 +1,9 @@
 <div>
   <h1><%= readable_date(@show) %></h1>
 
-  <p><%= link "Edit", to: show_path(@conn, :edit, @show), class: "btn btn-lg" %></p>
+  <%= if user_can(@current_user, :edit_show) do %>
+    <p><%= link "Edit", to: show_path(@conn, :edit, @show), class: "btn btn-lg" %></p>
+  <% end %>
 
   <%= if @show.venue do %>
     <p>

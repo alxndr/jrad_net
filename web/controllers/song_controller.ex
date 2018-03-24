@@ -5,14 +5,15 @@ defmodule JradNet.SongController do
     User,
   }
 
-  # plug :authorize_user when action in [:new, :create, :update, :edit, :delete]
+  plug :authorize_user when action in [:new, :create, :update, :edit, :delete]
 
   def index(conn, _params) do
+    current_user = get_session(conn, :current_user)
     songs =
       Song
       |> Repo.all
       |> Repo.preload(:song_performances)
-    render conn, "index.html", songs: songs
+    render(conn, "index.html", songs: songs, current_user: current_user)
   end
 
   def new(conn, _params) do
@@ -35,9 +36,10 @@ defmodule JradNet.SongController do
   end
 
   def show(conn, %{"id" => id}) do
+    current_user = get_session(conn, :current_user)
     song = Song.get_with_shows(id)
     performances = song.song_performances
-    render conn, "show.html", song: song, performances: performances || []
+    render(conn, "show.html", song: song, performances: performances || [], current_user: current_user)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -47,6 +49,7 @@ defmodule JradNet.SongController do
   end
 
   defp authorize_user(conn, _) do
+    # TODO share across controllers
     user = get_session(conn, :current_user)
     cond do
       !user ->

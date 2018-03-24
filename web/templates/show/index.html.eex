@@ -14,7 +14,7 @@
   <tbody>
 <%= for show <- @shows do %>
     <tr>
-      <td class="text-right"><%= link "Edit", to: show_path(@conn, :edit, show), class: "btn btn-default btn-xs" %></td>
+      <td class="text-right"><%= if user_can(@current_user, :edit_show), do: link "Edit", to: show_path(@conn, :edit, show), class: "btn btn-default btn-xs" %></td>
       <td class="text-right"><%= link readable_date(show), to: show_path(@conn, :show, show) %></td>
       <td>
         <%= if show.venue do %>
@@ -27,5 +27,3 @@
 <% end %>
   </tbody>
 </table>
-
-<%= link "New show", to: show_path(@conn, :new), class: "btn btn-default" %>

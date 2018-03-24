@@ -5,15 +5,16 @@ defmodule JradNet.VenueController do
     Venue,
   }
 
-  # plug :authorize_user when action in [:new, :create, :update, :edit, :delete]
+  plug :authorize_user when action in [:new, :create, :update, :edit, :delete]
 
   def index(conn, _params) do
+    current_user = get_session(conn, :current_user)
     venues =
       Venue
       |> Ecto.Query.order_by([v], asc: v.location)
       |> Repo.all
       |> Repo.preload(:shows)
-    render(conn, "index.html", venues: venues)
+    render(conn, "index.html", venues: venues, current_user: current_user)
   end
 
   def new(conn, _params) do
@@ -35,8 +36,9 @@ defmodule JradNet.VenueController do
   end
 
   def show(conn, %{"id" => id}) do
+    current_user = get_session(conn, :current_user)
     venue = Venue.get_with_shows(id)
-    render conn, "show.html", venue: venue
+    render(conn, "show.html", venue: venue, current_user: current_user)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -72,11 +74,8 @@ defmodule JradNet.VenueController do
   end
 
   defp authorize_user(conn, _) do
+    # TODO How to share across several controllers?
     user = get_session(conn, :current_user)
-    IO.puts "\n"
-    IO.puts "authorize_user"
-    IO.puts inspect user
-    IO.puts "\n"
     cond do
       !user ->
         conn

@@ -46,9 +46,11 @@ defmodule JradNet.ShowController do
   end
 
   def show(conn, %{"id" => id}) do
+    current_user = get_session(conn, :current_user)
     show = Show.get_with_venue_and_sets(id)
     sets = Enum.map(show.sets, &Set.arrange_songs/1)
     render conn, "show.html",
+      current_user: current_user,
       show: show,
       sets: sets,
       venue: show.venue,

@@ -3,6 +3,7 @@ defmodule JradNet.VenueView do
   alias JradNet.{
     Repo,
     Show,
+    User,
     Venue,
   }
 
@@ -18,4 +19,6 @@ defmodule JradNet.VenueView do
   def title("show.html", %{conn: %{assigns: %{venue: venue}}}), do: Venue.friendly_name(venue)
   def title("edit.html", %{conn: %{assigns: %{venue: venue}}}), do: "Editing: #{Venue.friendly_name(venue)}"
   def title(_, _), do: nil
+
+  def user_can(user, action), do: User.can(user, nil, nil, nil)
 end
