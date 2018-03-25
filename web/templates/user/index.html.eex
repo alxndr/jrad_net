@@ -1,26 +1,24 @@
 <h2>Listing users</h2>
 
+<%= if user_can(@current_user, :new_user), do: link "New user", to: user_path(@conn, :new) %>
+
 <table class="table">
   <thead>
     <tr>
       <th></th>
       <th>Username</th>
-      <th>Email</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <%= for user <- @users do %>
       <tr>
-        <td><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></td>
+        <td><%= if user_can(@current_user, :edit_user), do: link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></td>
         <td><%= link user.username, to: user_path(@conn, :show, user) %></td>
-        <td><%= user.email %></td>
         <td class="text-right">
-          <%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+          <%= if user_can(@current_user, :delete_user), do: link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link "New user", to: user_path(@conn, :new) %>

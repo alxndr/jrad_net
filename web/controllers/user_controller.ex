@@ -3,12 +3,13 @@ defmodule JradNet.UserController do
 
   alias JradNet.User
 
-  # plug :authorize_user when action in [:new, :create, :update, :edit, :delete]
+  plug :authorize_user when action in [:new, :create, :delete]
   plug :authorize_self when action in [:update, :edit]
 
   def index(conn, _params) do
+    current_user = get_session(conn, :current_user)
     users = Repo.all(User)
-    render(conn, "index.html", users: users)
+    render(conn, "index.html", users: users, current_user: current_user)
   end
 
   def new(conn, _params) do
@@ -30,8 +31,9 @@ defmodule JradNet.UserController do
   end
 
   def show(conn, %{"id" => id}) do
+    current_user = get_session(conn, :current_user)
     user = Repo.get!(User, id)
-    render(conn, "show.html", user: user)
+    render(conn, "show.html", user: user, current_user: current_user)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -84,7 +86,7 @@ defmodule JradNet.UserController do
     end
   end
 
-  defp authorize_self(conn, something) do
+  defp authorize_self(conn, _) do
     user_subject = get_session(conn, :current_user)
     user_object = Repo.get!(User, conn.params["id"])
     cond do
@@ -94,6 +96,8 @@ defmodule JradNet.UserController do
         |> redirect(to: session_path(conn, :new))
         |> halt()
       user_subject.id == user_object.id ->
+        conn
+      User.can(user_subject, conn.method, conn.path_info, conn.path_params) ->
         conn
       true ->
         conn

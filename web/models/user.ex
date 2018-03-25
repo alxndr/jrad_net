@@ -38,6 +38,7 @@ defmodule JradNet.User do
   def can(nil, nil, nil, nil), do: false
   def can(nil, _, _, _), do: false
   def can(%{username: "crazyquilt"}, _method, _path_info, _path_params), do: true
+  def can(%{id: id}, _method, :edit_user, %{id: id}), do: true
   def can(%{}, _method, _path_info, _path_params), do: false
   def can(_, _, _, _), do: false
 end
