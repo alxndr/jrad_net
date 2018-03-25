@@ -19,4 +19,4 @@ config :jrad_net, JradNet.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 # reduce number of encryption rounds ONLY IN TESTS
-config :comeonin, bcrypt_log_rounds: 4 # TODO is this working?
+config :bcrypt_elixir, log_rounds: 4

@@ -4,6 +4,7 @@ defmodule JradNet.UserController do
   alias JradNet.User
 
   # plug :authorize_user when action in [:new, :create, :update, :edit, :delete]
+  plug :authorize_self when action in [:update, :edit]
 
   def index(conn, _params) do
     users = Repo.all(User)
@@ -74,6 +75,25 @@ defmodule JradNet.UserController do
         |> redirect(to: session_path(conn, :new))
         |> halt()
       User.can(user, conn.method, conn.path_info, conn.path_params) ->
+        conn
+      true ->
+        conn
+        |> put_flash(:error, "can't do that")
+        |> redirect(to: page_path(conn, :index))
+        |> halt()
+    end
+  end
+
+  defp authorize_self(conn, something) do
+    user_subject = get_session(conn, :current_user)
+    user_object = Repo.get!(User, conn.params["id"])
+    cond do
+      !user_subject ->
+        conn
+        |> put_flash(:error, "gotta be logged in to do that")
+        |> redirect(to: session_path(conn, :new))
+        |> halt()
+      user_subject.id == user_object.id ->
         conn
       true ->
         conn

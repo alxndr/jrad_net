@@ -1,6 +1,5 @@
 defmodule JradNet.User do
   use JradNet.Web, :model
-  import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
   schema "users" do
     field :username, :string
@@ -30,7 +29,7 @@ defmodule JradNet.User do
     confirmation = get_change(changeset, :password_confirmation)
     if password && confirmation && password == confirmation do
       changeset
-      |> put_change(:password_digest, hashpwsalt(password))
+      |> put_change(:password_digest, Bcrypt.hash_pwd_salt(password))
     else
       changeset
     end

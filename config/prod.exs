@@ -73,7 +73,7 @@ config :jrad_net, JradNet.Repo,
 
 
 # increased rounds of encryption for production
-config :comeonin, bcrypt_log_rounds: 15
+config :bcrypt_elixir, log_rounds: 15
 
 config :libcluster,
   topologies: [
