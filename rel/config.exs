@@ -25,6 +25,7 @@ environment :prod do
   # this is just to get rid of the warning. see https://github.com/bitwalker/distillery/issues/140
   set cookie: :"${MY_COOKIE}"
   set vm_args: "rel/vm.args"
+  set applications: [bcrypt: :load]
 end
 
 # You may define one or more releases in this file.
