@@ -3,7 +3,7 @@ defmodule JradNet.UserController do
 
   alias JradNet.User
 
-  plug :authorize_user when action in [:new, :create, :delete]
+  plug :authorize_user when action in [:delete]
   plug :authorize_self when action in [:update, :edit]
 
   def index(conn, _params) do
