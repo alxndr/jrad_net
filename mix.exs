@@ -19,6 +19,7 @@ defmodule JradNet.Mixfile do
   def application do
     [mod: {JradNet, []},
      applications: [
+       :bcrypt_elixir,
        :comeonin,
        :cowboy,
        :gettext,
