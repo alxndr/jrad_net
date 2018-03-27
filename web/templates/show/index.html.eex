@@ -1,6 +1,6 @@
 <h2><%= length(@shows) %> Shows</h2>
 
-<%= if user_can(@current_user, :create_show), do: link("New show", to: show_path(@conn, :new), class: "btn btn-default") %>
+<%= if user_can(@current_user, :new_show), do: link("New show", to: show_path(@conn, :new), class: "btn btn-default") %>
 
 <table class="table">
   <thead>
