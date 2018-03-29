@@ -27,6 +27,7 @@
   "phoenix_live_reload": {:hex, :phoenix_live_reload, "1.0.6", "4490d588c4f60248b1c5f1f0dc0a7271e1aed4bddbd8b1542630f7bf6bc7b012", [:mix], [{:fs, "~> 0.9.1", [hex: :fs, optional: false]}, {:phoenix, "~> 1.0 or ~> 1.2-rc", [hex: :phoenix, optional: false]}]},
   "phoenix_pubsub": {:hex, :phoenix_pubsub, "1.0.2", "bfa7fd52788b5eaa09cb51ff9fcad1d9edfeb68251add458523f839392f034c1", [:mix], []},
   "plug": {:hex, :plug, "1.4.5", "7b13869283fff6b8b21b84b8735326cc012c5eef8607095dc6ee24bd0a273d8e", [:mix], [{:cowboy, "~> 1.0.1 or ~> 1.1", [hex: :cowboy, optional: true]}, {:mime, "~> 1.0", [hex: :mime, optional: false]}]},
+  "plug_robots": {:hex, :plug_robots, "0.1.0", "c48b8133a3dad06247cf7b1de1c63576847ff69cbd9d6c5e0f2033028e3d2b60", [:mix], [{:plug, "~> 1.0", [hex: :plug, optional: false]}]},
   "poison": {:hex, :poison, "2.2.0", "4763b69a8a77bd77d26f477d196428b741261a761257ff1cf92753a0d4d24a63", [:mix], []},
   "poolboy": {:hex, :poolboy, "1.5.1", "6b46163901cfd0a1b43d692657ed9d7e599853b3b21b95ae5ae0a777cf9b6ca8", [:rebar], []},
   "postgrex": {:hex, :postgrex, "0.13.3", "c277cfb2a9c5034d445a722494c13359e361d344ef6f25d604c2353185682bfc", [:mix], [{:connection, "~> 1.0", [hex: :connection, optional: false]}, {:db_connection, "~> 1.1", [hex: :db_connection, optional: false]}, {:decimal, "~> 1.0", [hex: :decimal, optional: false]}]},
