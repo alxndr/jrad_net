@@ -1,4 +1,4 @@
-<%= link "Back", to: show_path(@conn, :index), class: "btn btn-default" %>
+<%= link "Back", to: show_path(@conn, :index) %>
 
 <h2>Edit show</h2>
 
