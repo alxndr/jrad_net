@@ -18,8 +18,11 @@
       <td class="date"><%= link readable_date(show), to: show_path(@conn, :show, show) %></td>
       <td class="venue">
         <%= if show.venue do %>
-          <%= if show.venue.name, do: link show.venue.name, to: venue_path(@conn, :show, show.venue) %>
-          <%= if show.venue.location, do: show.venue.location %>
+          <%= if show.venue.name do %>
+            <%= link show.venue.name, to: venue_path(@conn, :show, show.venue) %>
+          <% else %>
+            <%= if show.venue.location, do: show.venue.location %>
+          <% end %>
         <% end %>
       </td>
       <td class="notes">

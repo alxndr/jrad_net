@@ -37,7 +37,7 @@ html[data-path="/shows"] td.venue {
   white-space: nowrap;
 }
 html[data-path="/shows"] td.notes {
-  max-width: 75%;
+  max-width: 20em;
 }
 html[data-path="/shows"] td.notes .truncator {
   white-space: nowrap;
