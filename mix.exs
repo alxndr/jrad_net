@@ -29,6 +29,7 @@ defmodule JradNet.Mixfile do
        :phoenix_ecto,
        :phoenix_html,
        :phoenix_pubsub,
+       :plug_robots,
        :postgrex,
        :runtime_tools,
        :ssl,
