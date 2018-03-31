@@ -26,11 +26,12 @@
 <%= form_for @changeset, show_path(@conn, :update, @show), fn f -> %>
   <div class="form-group">
     <%= label f, :which, "Add Set:", class: "control-label" %>
-    <%= for {code, value} <- radio_button_values_for_sets() do %>
-      <%= label f, code do %>
-        <%# TODO narrow this down... can only add sdchk/set/encore 1 greater than what already is set up %>
-        <%= radio_button f, :which, value, disabled: is_set_defined_in_show?(@show, value) %>
-        <%= set_name(value) %>
+    <%= for {code, which} <- radio_button_values_for_sets() do %>
+      <%= unless is_set_defined_in_show?(@show, which) do %>
+        <%= label f, code do %>
+          <%= radio_button f, :which, which %>
+          <%= set_name(which) %>
+        <% end %>
       <% end %>
     <% end %>
     <%= error_tag f, :which %>
