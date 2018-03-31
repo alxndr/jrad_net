@@ -27,9 +27,7 @@
       </td>
       <td class="notes">
         <%= if show.notes do %>
-          <div class="truncator">
-            <%= show.notes %>
-          </div>
+          <div class="truncator"><%= notes_on_one_line(show.notes) %></div>
         <% end %>
       </td>
     </tr>

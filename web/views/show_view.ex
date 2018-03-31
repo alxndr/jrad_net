@@ -79,4 +79,11 @@ defmodule JradNet.ShowView do
         should_be_an_integer_as_a_string
     end
   end
+
+  def notes_on_one_line(notes) do
+    notes
+    |> String.split(~r{\r?\n})
+    |> Enum.filter(&(&1 != ""))
+    |> Enum.join(" / ")
+  end
 end
