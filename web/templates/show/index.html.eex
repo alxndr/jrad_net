@@ -8,7 +8,6 @@
       <th class="text-right"></th>
       <th class="text-right">Date</th>
       <th>Venue</th>
-      <th>Sets</th>
     </tr>
   </thead>
   <tbody>
@@ -22,7 +21,6 @@
           <%= if show.venue.location, do: show.venue.location %>
         <% end %>
       </td>
-      <td><%= count_of_sets_and_encores(show) %></td>
     </tr>
 <% end %>
   </tbody>
