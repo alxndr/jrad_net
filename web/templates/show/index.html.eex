@@ -8,17 +8,25 @@
       <th class="text-right"></th>
       <th class="text-right">Date</th>
       <th>Venue</th>
+      <th>Notes</th>
     </tr>
   </thead>
   <tbody>
 <%= for show <- @shows do %>
     <tr>
       <td class="text-right"><%= if user_can(@current_user, :edit_show), do: link "Edit", to: show_path(@conn, :edit, show), class: "btn btn-default btn-xs" %></td>
-      <td class="text-right"><%= link readable_date(show), to: show_path(@conn, :show, show) %></td>
-      <td>
+      <td class="date"><%= link readable_date(show), to: show_path(@conn, :show, show) %></td>
+      <td class="venue">
         <%= if show.venue do %>
           <%= if show.venue.name, do: link show.venue.name, to: venue_path(@conn, :show, show.venue) %>
           <%= if show.venue.location, do: show.venue.location %>
+        <% end %>
+      </td>
+      <td class="notes">
+        <%= if show.notes do %>
+          <div class="truncator">
+            <%= show.notes %>
+          </div>
         <% end %>
       </td>
     </tr>

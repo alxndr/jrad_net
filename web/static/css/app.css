@@ -28,6 +28,23 @@
  * specific pages
  */
 
+/* Show index */
+html[data-path="/shows"] td.date {
+  text-align: right;
+  white-space: nowrap;
+}
+html[data-path="/shows"] td.venue {
+  white-space: nowrap;
+}
+html[data-path="/shows"] td.notes {
+  max-width: 75%;
+}
+html[data-path="/shows"] td.notes .truncator {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 /* Show pages */
 .set li a {
   visibility: hidden;
@@ -42,7 +59,7 @@
 .set li:hover a {
   visibility: visible;
 }
-.notes {
+.setlist + .notes { /* fragile selector there */
   margin: 0.5em 1em;
   border: 1px solid #ddd;
   box-shadow: 5px 5px 10px rgba(50, 50, 50, 0.3);
