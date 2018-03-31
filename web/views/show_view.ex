@@ -70,4 +70,13 @@ defmodule JradNet.ShowView do
       length(grouped[:sets])
     end
   end
+
+  def accesskey_for_set(%{which: which}) when is_bitstring(which) do
+    case which do
+      "e1" -> "e"
+      "e2" -> "f"
+      should_be_an_integer_as_a_string ->
+        should_be_an_integer_as_a_string
+    end
+  end
 end

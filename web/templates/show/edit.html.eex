@@ -12,7 +12,8 @@
       <%= select f, :new_song_id,
         song_select_list(@all_songs),
         default: "",
-        class: "form-control"
+        class: "form-control",
+        accesskey: accesskey_for_set(set)
       %>
       <%= error_tag f, :venue %>
     </div>
