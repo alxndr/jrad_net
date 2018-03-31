@@ -11,6 +11,7 @@ defmodule JradNet.SongController do
     current_user = get_session(conn, :current_user)
     songs =
       Song
+      |> Song.order_by_name
       |> Repo.all
       |> Repo.preload(:song_performances)
     render(conn, "index.html", songs: songs, current_user: current_user)
