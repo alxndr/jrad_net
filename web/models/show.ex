@@ -12,6 +12,7 @@ defmodule JradNet.Show do
     belongs_to :venue, Venue, on_replace: :update
     has_many :sets, Set
     # TODO may be part of an Event (e.g. High Sierra, Songs of Love Benefit...)
+    field :notes, :string
 
     timestamps()
   end
@@ -21,7 +22,7 @@ defmodule JradNet.Show do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:date, :venue_id])
+    |> cast(params, [:date, :notes, :venue_id])
     |> validate_required([:date])
   end
 

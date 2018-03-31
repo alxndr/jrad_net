@@ -14,6 +14,12 @@
 
   <%= render "_setlist.html", conn: @conn, sets: @sets %>
 
+  <%= if @show.notes do %>
+    <div class="notes">
+      <%= @show.notes %>
+    </div>
+  <% end %>
+
 </div>
 
 <hr>

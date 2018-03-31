@@ -12,6 +12,15 @@
   </div>
 
   <div class="form-group">
+    <%= label f, :notes, class: "control-label" %>
+    <%= textarea f, :notes,
+      default: @changeset.data.notes,
+      class: "form-control"
+    %>
+    <%= error_tag f, :notes %>
+  </div>
+
+  <div class="form-group">
     <%= label f, :venue_id, class: "control-label" %>
     <%= select f, :venue_id,
       venue_select_list(@all_venues),

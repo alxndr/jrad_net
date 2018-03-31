@@ -42,6 +42,12 @@
 .set li:hover a {
   visibility: visible;
 }
+.notes {
+  margin: 0.5em 1em;
+  border: 1px solid #ddd;
+  box-shadow: 5px 5px 10px rgba(50, 50, 50, 0.3);
+  padding: 1em;
+}
 
 /* Song pages */
 html[data-path^="/songs/"] ul {
