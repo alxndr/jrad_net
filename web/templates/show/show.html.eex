@@ -16,7 +16,16 @@
 
   <%= if @show.notes do %>
     <div class="notes">
-      <%= @show.notes %>
+      <p>
+        <%= for note <- String.split(@show.notes, ~r{\r*\n+}) do %>
+          <%= if note == "" do %>
+            </p><p>
+          <% else %>
+            <%= note %>
+            <br/>
+          <% end %>
+        <% end %>
+      </p>
     </div>
   <% end %>
 
