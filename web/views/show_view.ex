@@ -71,7 +71,7 @@ defmodule JradNet.ShowView do
     end
   end
 
-  def accesskey_for_set(%{which: which}) when is_bitstring(which) do
+  def accesskey_for_set(which) when is_bitstring(which) do
     case which do
       "e1" -> "e"
       "e2" -> "f"

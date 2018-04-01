@@ -13,7 +13,7 @@
         song_select_list(@all_songs),
         default: "",
         class: "form-control",
-        accesskey: accesskey_for_set(set)
+        accesskey: accesskey_for_set(set.which)
       %>
       <%= error_tag f, :venue %>
     </div>
@@ -29,7 +29,7 @@
     <%= for {code, which} <- radio_button_values_for_sets() do %>
       <%= unless is_set_defined_in_show?(@show, which) do %>
         <%= label f, code do %>
-          <%= radio_button f, :which, which %>
+          <%= radio_button f, :which, which, accesskey: accesskey_for_set(which) %>
           <%= set_name(which) %>
         <% end %>
       <% end %>
