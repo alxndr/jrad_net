@@ -34,6 +34,8 @@ defmodule JradNet.Song do
 
   def get(id), do: Repo.get!(__MODULE__, id)
 
+  def get_by_name(name), do: Repo.get_by(__MODULE__, name: name)
+
   def get_with_shows(id) do
     # TODO order performances by the show date...
     __MODULE__

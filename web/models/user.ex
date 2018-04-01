@@ -1,6 +1,10 @@
 defmodule JradNet.User do
   use JradNet.Web, :model
 
+  alias JradNet.{
+    Repo
+  }
+
   schema "users" do
     field :username, :string
     field :email, :string
@@ -34,6 +38,8 @@ defmodule JradNet.User do
       changeset
     end
   end
+
+  def get(id), do: Repo.get!(__MODULE__, id)
 
   def can(nil, nil, nil, nil), do: false
   def can(nil, _, _, _), do: false

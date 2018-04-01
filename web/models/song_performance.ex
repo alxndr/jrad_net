@@ -1,6 +1,7 @@
 alias JradNet.{
   Repo,
   Set,
+  Song,
 }
 
 defmodule JradNet.SongPerformance do
@@ -9,7 +10,7 @@ defmodule JradNet.SongPerformance do
 
   schema "song_performances" do
     belongs_to :set, Set
-    belongs_to :song, JradNet.Song
+    belongs_to :song, Song
     belongs_to :antecedent, __MODULE__
     field :position, :integer # what number. unique to set, not song
     # variants: duo, instrumental, jam, part #, reprise, solo, spoken, verse #, ... can have multiple?
@@ -102,5 +103,12 @@ defmodule JradNet.SongPerformance do
     |> Ecto.Query.order_by([sp], desc: sp.inserted_at)
     |> Ecto.Query.limit(1)
     |> Repo.one
+  end
+
+  def swap_for(song_name) do
+    song = Repo.get_by(Song, name: song_name)
+    last_inserted
+    |> __MODULE__.changeset(%{song_id: song.id})
+    |> Repo.update
   end
 end

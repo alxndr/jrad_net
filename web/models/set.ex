@@ -79,4 +79,11 @@ defmodule JradNet.Set do
                               which === "3", do: "Set #{which}"
   def pretty_name(which) when which === "e1", do: "Encore"
   def pretty_name(which) when which === "e2", do: "Encore 2"
+
+  def last_inserted do
+    __MODULE__
+    |> Ecto.Query.order_by([sp], desc: sp.inserted_at)
+    |> Ecto.Query.limit(1)
+    |> Repo.one
+  end
 end
