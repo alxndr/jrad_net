@@ -49,6 +49,19 @@ defmodule JradNet.SongController do
     render conn, "edit.html", song: song, changeset: changeset
   end
 
+  def update(conn, %{"id" => id, "song" => song_params}) do
+    song = Repo.get!(Song, id)
+    changeset = Song.changeset(song, song_params)
+    case Repo.update(changeset) do
+      {:ok, song} ->
+        conn
+        |> put_flash(:info, "Song updated.")
+        |> redirect(to: song_path(conn, :show, song))
+      {:error, changeset} ->
+        render(conn, "edit.html", song: song, changeset: changeset)
+    end
+  end
+
   defp authorize_user(conn, _) do
     # TODO share across controllers
     user = get_session(conn, :current_user)
