@@ -36,6 +36,14 @@ $ export GX_FREEDB_ID=$(gigalixir free_databases $APP_NAME | jq '.[] | select(.s
 $ gigalixir delete_free_database $APP_NAME $GX_FREEDB_ID
 ```
 
+### deploying
+
+```
+$ git push gigalixir
+$ gigalixir migrate $APP_NAME
+```
+
+
 -------
 
 Git v2.9.0 required to support extra headers.
