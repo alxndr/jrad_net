@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-path="<%= @conn.request_path %>">
+<html class="<%= Application.get_env(:jrad_net, :env) %>" lang="en" data-path="<%= @conn.request_path %>">
   <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110469932-1"></script>
     <script>

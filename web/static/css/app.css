@@ -8,6 +8,9 @@
   float: right;
   max-width: 13%;
 }
+.dev #logo {
+  background: pink;
+}
 
 .userinfo {
   position: fixed;

@@ -1,5 +1,7 @@
 use Mix.Config
 
+config :jrad_net, env: "dev"
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #

@@ -1,5 +1,7 @@
 use Mix.Config
 
+config :jrad_net, env: "prod"
+
 # For production, we configure the host to read the PORT
 # from the system environment. Therefore, you will need
 # to set PORT=80 before running your server.
