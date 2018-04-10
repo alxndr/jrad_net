@@ -43,19 +43,16 @@ defmodule JradNet.SongPerformanceController do
     |> redirect(to: show_path(conn, :edit, show))
   end
 
-  def edit(conn, %{"id" => id}) do
+  def edit(conn, %{"id" => id} = params) do
     song_performance =
       id
       |> SongPerformance.get()
       |> Repo.preload([set: :show])
-    IO.puts ".............editing............"
-    IO.puts inspect song_performance
-    IO.puts ".............editing............"
     changeset = case song_performance.notes do
-      nil -> # n.b. this is unusual
+      nil -> # n.b. ellipsis is autofilled
         SongPerformance.changeset(song_performance)
         |> SongPerformance.changeset(%{notes: "..."})
-      notes ->
+      _notes ->
         SongPerformance.changeset(song_performance)
     end
     case Repo.update(changeset) do
@@ -64,7 +61,7 @@ defmodule JradNet.SongPerformanceController do
         |> put_flash(:info, "Notes added.")
         |> redirect(to: show_path(conn, :edit, song_performance.set.show))
         # TODO focus the field
-      {:error, changeset} ->
+      {:error, _changeset} ->
         conn
         |> put_flash(:error, "Error...")
         |> redirect(to: show_path(conn, :edit, song_performance.set.show))
@@ -77,13 +74,20 @@ defmodule JradNet.SongPerformanceController do
       id
       |> SongPerformance.get()
       |> Repo.preload(set: :show)
-    changeset = SongPerformance.changeset(song_performance)
+    # changeset = SongPerformance.changeset(song_performance)
+    changeset = case song_performance.notes do
+      "" -> # n.b. setting notes to empty string will delete it
+        SongPerformance.changeset(song_performance)
+        |> SongPerformance.changeset(%{notes: nil})
+      _notes ->
+        SongPerformance.changeset(song_performance)
+    end
     case Repo.update(changeset) do
       {:ok, song_performance} ->
         conn
         |> put_flash(:info, "Song Performance updated.")
         |> redirect(to: show_path(conn, :edit, song_performance.set.show))
-      {:error, changeset} ->
+      {:error, _changeset} ->
         conn
         |> put_flash(:error, "Error updating song performance...")
         |> redirect(to: show_path(conn, :edit, song_performance.set.show))

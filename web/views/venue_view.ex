@@ -20,5 +20,5 @@ defmodule JradNet.VenueView do
   def title("edit.html", %{conn: %{assigns: %{venue: venue}}}), do: "Editing: #{Venue.friendly_name(venue)}"
   def title(_, _), do: nil
 
-  def user_can(user, action), do: User.can(user, nil, nil, nil)
+  def user_can(user, action), do: User.can(user, nil, action, nil)
 end

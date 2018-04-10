@@ -50,7 +50,6 @@ defmodule JradNet.VenueController do
   def update(conn, %{"id" => id, "venue" => venue_params}) do
     venue = Repo.get!(Venue, id)
     changeset = Venue.changeset(venue, venue_params)
-
     case Repo.update(changeset) do
       {:ok, venue} ->
         conn
