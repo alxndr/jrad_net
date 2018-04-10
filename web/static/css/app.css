@@ -49,18 +49,25 @@ html[data-path="/shows"] td.notes .truncator {
 }
 
 /* Show pages */
-.set li a {
+.set {
+  padding: 0;
+  list-style: none;
+}
+.set a.hover {
   visibility: hidden;
   display: inline-block;
   line-height: 1em;
   padding: 0.2em;
   border-radius: 1em;
   text-decoration: none;
-  background: lightgray;
-  color: white;
 }
-.set li:hover a {
+.set li:hover a.hover {
   visibility: visible;
+}
+.set li .notes abbr {
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: none;
 }
 .setlist + .notes { /* fragile selector there */
   margin: 0.5em 1em;

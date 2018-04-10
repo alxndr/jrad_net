@@ -4,7 +4,11 @@
 
 <%= for set <- @sets do %>
   <h4><%= JradNet.Set.pretty_name(set.which) %></h4>
-  <%= render "_individual_set.html", conn: @conn, performances: set.song_performances %>
+  <%= render "_individual_set.html",
+    conn: @conn,
+    performances: set.song_performances,
+    current_user: @current_user
+  %>
   <%= form_for @changeset, show_path(@conn, :update, @show), fn f -> %>
     <%= hidden_input :new_song, :set, value: set.which %>
     <div class="form-group">

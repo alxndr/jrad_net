@@ -15,6 +15,7 @@ defmodule JradNet.Router do
 
     get "/", PageController, :index
 
+    resources "/performances", SongPerformanceController, only: [:edit, :update, :delete]
     resources "/shows", ShowController
     resources "/songs", SongController
     resources "/users", UserController # TODO admin-only

@@ -16,7 +16,8 @@ defmodule JradNet.SongPerformance do
     # variants: duo, instrumental, jam, part #, reprise, solo, spoken, verse #, ... can have multiple?
     # ...theme is just part of the actual song if it's a TV tune or whatever...
     # ...but tease/quote should be a reference to another SongPerformance
-    # TODO: free-form notes; guest performer
+    field :notes, :string
+    # TODO: guest performer
 
     timestamps()
   end
@@ -26,7 +27,7 @@ defmodule JradNet.SongPerformance do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:set_id, :song_id, :antecedent_id, :position])
+    |> cast(params, [:set_id, :song_id, :antecedent_id, :notes, :position])
     |> validate_required([:set_id, :song_id])
     |> unique_constraint(:antecedent_id)
     # https://hexdocs.pm/ecto/Ecto.Changeset.html#unique_constraint/3

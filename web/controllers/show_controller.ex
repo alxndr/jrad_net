@@ -69,12 +69,14 @@ defmodule JradNet.ShowController do
       Venue
       |> Venue.order_by_location
       |> Repo.all
+    current_user = get_session(conn, :current_user)
     render conn, "edit.html",
       show: show,
       sets: sets,
       changeset: changeset,
       all_songs: all_songs,
-      all_venues: all_venues
+      all_venues: all_venues,
+      current_user: current_user
   end
 
   def update(conn, %{"id" => id, "show" => show_params} = params) do

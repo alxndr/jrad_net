@@ -19,5 +19,6 @@ defmodule JradNet.SongView do
 
   def readable_date(show), do: Show.readable_date(show)
 
-  def user_can(user, action), do: User.can(user, nil, nil, nil)
+  def user_can(user, action), do: User.can(user, nil, action, nil)
+  def user_can(user, action, object), do: User.can(user, nil, action, object)
 end

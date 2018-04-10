@@ -1,7 +1,13 @@
+<% chain_icon = "🔗"%>
 <ol class="set">
   <%= for song_performance <- @performances do %>
-    <li><%= song_performance.song.name %>
-      <%= link "⋯", to: song_path(@conn, :show, song_performance.song) %>
+    <li>
+      <%= link chain_icon, to: song_path(@conn, :show, song_performance.song), class: "hover" %>
+      <%= if user_can(@current_user, :delete_perf) do %>
+        <%= link "x", to: song_performance_path(@conn, :delete, song_performance), method: :delete, data: [confirm: "Really delete this performance?"], class: "hover" %>
+      <% end %>
+      <%= song_performance.song.name %>
+      <%= render JradNet.SongPerformanceView, "_notes.html", song_performance: song_performance, conn: @conn, current_user: @current_user %>
     </li>
   <% end %>
 </ol>
