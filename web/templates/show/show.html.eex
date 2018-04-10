@@ -12,7 +12,11 @@
     </p>
   <% end %>
 
-  <%= render "_setlist.html", conn: @conn, sets: @sets %>
+  <%= render "_setlist.html",
+    conn: @conn,
+    sets: @sets,
+    current_user: @current_user
+  %>
 
   <%= if @show.notes do %>
     <div class="notes">
