@@ -68,19 +68,19 @@ defmodule JradNet.SongPerformanceController do
     end
   end
 
-
-  def update(conn, %{"id" => id}) do
+  def update(conn, %{"id" => id, "song_performance" => song_performance_params}) do
     song_performance =
       id
       |> SongPerformance.get()
       |> Repo.preload(set: :show)
-    # changeset = SongPerformance.changeset(song_performance)
     changeset = case song_performance.notes do
-      "" -> # n.b. setting notes to empty string will delete it
-        SongPerformance.changeset(song_performance)
+      "" -> # n.b. setting notes to empty string should delete it
+        song_performance
+        |> SongPerformance.changeset()
         |> SongPerformance.changeset(%{notes: nil})
-      _notes ->
-        SongPerformance.changeset(song_performance)
+      notes ->
+        song_performance
+        |> SongPerformance.changeset(song_performance_params)
     end
     case Repo.update(changeset) do
       {:ok, song_performance} ->
