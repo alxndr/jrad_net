@@ -1,20 +1,18 @@
-<% pencil_icon = "📝" %>
-<span class="notes">
-<%= if @song_performance.notes do %>
+<span class="segue">
+<%= if @song_performance.segue do %>
   <%= if user_can(@current_user, :edit_perf, @song_performance) do %>
     <%= form_for JradNet.SongPerformance.changeset(@song_performance), song_performance_path(@conn, :update, @song_performance), [class: "link"], fn f -> %>
-      <%= text_input f, :notes %>
+      <%= text_input f, :segue, maxlength: 2 %>
       <%= submit "save" %>
-      <%= error_tag f, :notes %>
+      <%= error_tag f, :segue %>
     <% end %>
   <% else %>
-    <abbr title="<%= String.replace(@song_performance.notes, ~r{"}, "&quot;") %>">
-      <%= pencil_icon %>
-    </abbr>
+    <%= @song_performance.segue %>
   <% end %>
 <% else %>
   <%= if user_can(@current_user, :edit_perf, @song_performance) do %>
-    <%= link "add notes", to: song_performance_path(@conn, :edit, @song_performance), class: "hover" %>
+    <%= link "≻→", to: song_performance_path(@conn, :edit, @song_performance, add: :segue), class: "hover" %>
+    <!-- ⤙ -->
   <% end %>
 <% end %>
 </span>

@@ -87,6 +87,10 @@ html[data-path^="/shows/"] form[action^="/shows/"] label[for^="show_which"] {
 .alert {
   display: flex;
 }
+html[data-path^="/shows/"] form[action^="/performances/"] input#song_performance_segue {
+  width: 2em;
+  text-align: center;
+}
 
 html[data-path^="/users"] form[action="/users"] .help-block {
   background: pink;

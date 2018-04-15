@@ -11,12 +11,13 @@ defmodule JradNet.SongPerformance do
   schema "song_performances" do
     belongs_to :set, Set
     belongs_to :song, Song
-    belongs_to :antecedent, __MODULE__
+    belongs_to :antecedent, __MODULE__, on_replace: :update
     field :position, :integer # what number. unique to set, not song
     # variants: duo, instrumental, jam, part #, reprise, solo, spoken, verse #, ... can have multiple?
     # ...theme is just part of the actual song if it's a TV tune or whatever...
     # ...but tease/quote should be a reference to another SongPerformance
     field :notes, :string
+    field :segue, :string # could be an enum... could also be a separate model
     # TODO: guest performer
 
     timestamps()
@@ -27,7 +28,7 @@ defmodule JradNet.SongPerformance do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:set_id, :song_id, :antecedent_id, :notes, :position])
+    |> cast(params, [:set_id, :song_id, :antecedent_id, :notes, :position, :segue])
     |> validate_required([:set_id, :song_id])
     |> unique_constraint(:antecedent_id)
     # https://hexdocs.pm/ecto/Ecto.Changeset.html#unique_constraint/3

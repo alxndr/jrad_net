@@ -43,6 +43,28 @@ defmodule JradNet.SongPerformanceController do
     |> redirect(to: show_path(conn, :edit, show))
   end
 
+  def edit(conn, %{"add" => "segue", "id" => id} = params) do
+    song_performance =
+      id
+      |> SongPerformance.get()
+      |> Repo.preload([set: :show])
+    changeset =
+      song_performance
+      |> SongPerformance.changeset()
+      |> SongPerformance.changeset(%{segue: ">"})
+    case Repo.update(changeset) do
+      {:ok, song_performance} ->
+        conn
+        |> put_flash(:info, "Segue added.")
+        |> redirect(to: show_path(conn, :edit, song_performance.set.show))
+        # TODO focus the field
+      {:error, changeset} ->
+        IO.puts inspect changeset
+        conn
+        |> put_flash(:error, "Error adding segue...")
+        |> redirect(to: show_path(conn, :edit, song_performance.set.show))
+    end
+  end
   def edit(conn, %{"id" => id} = params) do
     song_performance =
       id
