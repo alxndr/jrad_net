@@ -64,10 +64,12 @@ html[data-path="/shows"] td.notes .truncator {
 .set li:hover a.hover {
   visibility: visible;
 }
-.set li .notes abbr {
-  cursor: pointer;
-  text-decoration: none;
-  border-bottom: none;
+.set li .segue a {
+  padding: 0.5em;
+}
+.set li .notes {
+  padding-left: 1em;
+  color: rgba(13, 13, 13, 0.5);
 }
 .setlist + .notes { /* fragile selector there */
   margin: 0.5em 1em;

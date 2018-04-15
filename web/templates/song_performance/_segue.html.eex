@@ -11,7 +11,7 @@
   <% end %>
 <% else %>
   <%= if user_can(@current_user, :edit_perf, @song_performance) do %>
-    <%= link "≻→", to: song_performance_path(@conn, :edit, @song_performance, add: :segue), class: "hover" %>
+    <%= link "≻", to: song_performance_path(@conn, :edit, @song_performance, add: :segue), class: "hover" %>
     <!-- ⤙ -->
   <% end %>
 <% end %>
