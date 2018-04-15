@@ -65,22 +65,38 @@ defmodule JradNet.SongPerformanceController do
         |> redirect(to: show_path(conn, :edit, song_performance.set.show))
     end
   end
+  def edit(conn, %{"add" => "notes", "id" => id} = params) do
+    song_performance =
+      id
+      |> SongPerformance.get()
+      |> Repo.preload([set: :show])
+    changeset =
+      song_performance
+      |> SongPerformance.changeset()
+      |> SongPerformance.changeset(%{notes: "..."}) # TODO pull this into a separate def edit/2
+    case Repo.update(changeset) do
+      {:ok, song_performance} ->
+        conn
+        |> put_flash(:info, "Notes added.")
+        |> redirect(to: show_path(conn, :edit, song_performance.set.show))
+        # TODO focus the field
+      {:error, changeset} ->
+        IO.puts inspect changeset
+        conn
+        |> put_flash(:error, "Error adding notes...")
+        |> redirect(to: show_path(conn, :edit, song_performance.set.show))
+    end
+  end
   def edit(conn, %{"id" => id} = params) do
     song_performance =
       id
       |> SongPerformance.get()
       |> Repo.preload([set: :show])
-    changeset = case song_performance.notes do
-      nil -> # n.b. ellipsis is autofilled
-        SongPerformance.changeset(song_performance)
-        |> SongPerformance.changeset(%{notes: "..."})
-      _notes ->
-        SongPerformance.changeset(song_performance)
-    end
+    changeset = SongPerformance.changeset(song_performance)
     case Repo.update(changeset) do
       {:ok, song_performance} ->
         conn
-        |> put_flash(:info, "Notes added.")
+        |> put_flash(:info, "Song performance updated.")
         |> redirect(to: show_path(conn, :edit, song_performance.set.show))
         # TODO focus the field
       {:error, _changeset} ->

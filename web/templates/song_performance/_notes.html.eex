@@ -8,13 +8,11 @@
       <%= error_tag f, :notes %>
     <% end %>
   <% else %>
-    <abbr title="<%= String.replace(@song_performance.notes, ~r{"}, "&quot;") %>">
-      <%= pencil_icon %>
-    </abbr>
+    <%= @song_performance.notes %>
   <% end %>
 <% else %>
   <%= if user_can(@current_user, :edit_perf, @song_performance) do %>
-    <%= link "add notes", to: song_performance_path(@conn, :edit, @song_performance), class: "hover" %>
+    <%= link pencil_icon, to: song_performance_path(@conn, :edit, @song_performance, add: :notes), class: "hover" %>
   <% end %>
 <% end %>
 </span>
