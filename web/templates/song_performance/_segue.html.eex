@@ -3,7 +3,6 @@
   <%= if user_can(@current_user, :edit_perf, @song_performance) do %>
     <%= form_for JradNet.SongPerformance.changeset(@song_performance), song_performance_path(@conn, :update, @song_performance), [class: "link"], fn f -> %>
       <%= text_input f, :segue, maxlength: 2 %>
-      <%= submit "save" %>
       <%= error_tag f, :segue %>
     <% end %>
   <% else %>
