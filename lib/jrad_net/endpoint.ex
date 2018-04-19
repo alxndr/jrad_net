@@ -40,7 +40,7 @@ defmodule JradNet.Endpoint do
 
   # PlugRobots needs to occur before the Router plug
   # https://github.com/shufo/plug_robots/blob/4a72927f6b4045fc4/README.md#usage
-  plug PlugRobots, rules: :deny_all
+  plug PlugRobots, rules: :allow_all
 
   plug JradNet.Router
 end
