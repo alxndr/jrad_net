@@ -2,7 +2,9 @@ defmodule JradNet.Router do
   use JradNet.Web, :router
 
   pipeline :browser do
-    plug JradNet.PlugRedirects
+    if Mix.env == :prod do
+      plug JradNet.PlugRedirects
+    end
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
