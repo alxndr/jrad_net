@@ -38,9 +38,5 @@ defmodule JradNet.Endpoint do
     key: "_jrad_net_key",
     signing_salt: "gbONjbFW"
 
-  # PlugRobots needs to occur before the Router plug
-  # https://github.com/shufo/plug_robots/blob/4a72927f6b4045fc4/README.md#usage
-  plug PlugRobots, rules: :allow_all
-
   plug JradNet.Router
 end
