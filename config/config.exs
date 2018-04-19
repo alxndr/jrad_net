@@ -11,7 +11,7 @@ config :jrad_net,
 
 # Configures the endpoint
 config :jrad_net, JradNet.Endpoint,
-  url: [host: "localhost"],
+  url: [scheme: "http", host: "localhost", port: 4000],
   secret_key_base: "71noA/0cCGKiKi8COvvTQIPb8AgRHnvR3FxfTqFG/WYInJrem52UA8MpcDYx17rk",
   render_errors: [view: JradNet.ErrorView, accepts: ~w(html json)],
   pubsub: [name: JradNet.PubSub,
