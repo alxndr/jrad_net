@@ -41,6 +41,9 @@
 
       </main>
 
+      <div id="foot">
+        <p>Contributions / corrections: <a href="https://twitter.com/AlmostDeadNet" rel="noopener noreferrer" target="_blank">twitter @AlmostDeadNet</a></p>
+      </div>
     </div>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
