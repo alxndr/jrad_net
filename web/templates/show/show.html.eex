@@ -1,15 +1,8 @@
 <div>
-  <h1><%= readable_date(@show) %></h1>
+  <h1><%= show_date_and_venue(@show) %></h1>
 
   <%= if user_can(@current_user, :edit_show) do %>
     <p><%= link "Edit", to: show_path(@conn, :edit, @show), class: "btn btn-lg" %></p>
-  <% end %>
-
-  <%= if @show.venue do %>
-    <p>
-      <%= link @show.venue.name, to: venue_path(@conn, :show, @show.venue) %>
-      <%= @show.venue.location %>
-    </p>
   <% end %>
 
   <%= render "_setlist.html",

@@ -45,10 +45,22 @@ defmodule JradNet.Show do
   def readable_date(show), do: Timex.format!(show.date, "{M}/{D}/{YY}")
 
   @doc """
+  A verbose human-readable way of representing the date of the show.
+  """
+  def date_and_venue(show) do
+    date = Timex.format!(show.date, "{Mfull} {D}, {YYYY}")
+    if show.venue do
+      "#{date} at #{Venue.friendly_name(show.venue)}"
+    else
+      date
+    end
+  end
+
+  @doc """
   A human-readable way of representing the date and venue of the show.
   """
   def friendly_name(show) do
-    if show.venue do
+    if Map.get(show, :venue) do
       "#{readable_date(show)} at #{Venue.friendly_name(show.venue)}"
     else
       readable_date(show)

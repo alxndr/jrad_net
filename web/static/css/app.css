@@ -49,6 +49,9 @@ html[data-path="/shows"] td.notes .truncator {
 }
 
 /* Show pages */
+html[data-path^="/shows/"] h1 {
+  font-size: 24px;
+}
 .set {
   padding: 0;
   list-style: none;

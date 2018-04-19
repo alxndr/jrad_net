@@ -9,6 +9,8 @@ defmodule JradNet.ShowView do
 
   def readable_date(show), do: Show.readable_date(show)
 
+  def show_date_and_venue(show), do: Show.date_and_venue(show)
+
   def selected_venue_id(%{"id" => venue_id}), do: venue_id
   def selected_venue_id(nil), do: ""
   def selected_venue_id(_venue), do: ""
@@ -23,9 +25,9 @@ defmodule JradNet.ShowView do
 
   def title("index.html", _), do: "Shows"
   def title("new.html", _), do: "Add new show"
-  def title("show.html", %{conn: %{assigns: %{show: show}}}), do: Show.friendly_name(show)
+  def title("show.html", %{conn: %{assigns: %{show: show}}}), do: "JRAD #{Show.date_and_venue(show)} setlist and other notes"
   def title("edit.html", %{conn: %{assigns: %{show: show}}}), do: "Editing: #{Show.friendly_name(show)}"
-  def title(_, _), do: nil # would be nice if this base case were implemented elsewhere ✨
+  def title(_, _), do: nil
 
   def user_can(user, action), do: User.can(user, nil, action, nil)
   def user_can(user, action, object), do: User.can(user, nil, action, object)
