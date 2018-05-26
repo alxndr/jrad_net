@@ -56,7 +56,10 @@ html[data-path^="/shows/"] h1 {
   padding: 0;
   list-style: none;
 }
-.set a.hover {
+.set a.delete {
+  color: red;
+}
+.set .hover {
   visibility: hidden;
   display: inline-block;
   line-height: 1em;

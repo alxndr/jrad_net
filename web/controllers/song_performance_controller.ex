@@ -3,6 +3,7 @@ defmodule JradNet.SongPerformanceController do
 
   alias JradNet.{
     Repo,
+    Show,
     SongPerformance,
     User,
   }
@@ -14,33 +15,65 @@ defmodule JradNet.SongPerformanceController do
     track =
       SongPerformance
       |> Repo.get!(id)
+      |> Repo.preload(:song)
       |> Repo.preload(:antecedent)
       |> Repo.preload(set: :show)
-    show = track.set.show
-
-    preceeding_track =
-      track.antecedent
-      |> Repo.preload(:song)
+    preceeding_track = Repo.preload(track.antecedent, :song)
+    track
+    |> SongPerformance.changeset(%{antecedent_id: nil})
+    |> Ecto.Changeset.put_assoc(:antecedent, nil)
+    |> Repo.update!
     following_track =
       track
       |> SongPerformance.children
       |> Repo.one
+      |> Repo.preload(:antecedent)
       |> Repo.preload(:song)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(track)
-
-    if following_track && preceeding_track do # TODO handle other situations
-      following_track
-      |> SongPerformance.changeset(%{antecedent_id: preceeding_track.id})
-      |> Ecto.Changeset.put_assoc(:antecedent, preceeding_track)
-      |> Repo.insert!
+    an_arbitrary_track =
+      cond do
+        !is_nil(following_track) && !is_nil(preceeding_track) ->
+          # Deleting from middle of setlist...
+          following_track
+          |> Repo.preload(:set) # ...dunno why
+          |> SongPerformance.changeset(%{antecedent_id: preceeding_track.id})
+          |> Ecto.Changeset.put_assoc(:antecedent, preceeding_track)
+          |> Repo.update!
+        following_track ->
+          # Deleting opener...
+          # The following track's antecedent must be cleared.
+          following_track
+          |> SongPerformance.changeset(%{antecedent_id: nil})
+          |> Ecto.Changeset.put_assoc(:antecedent, nil)
+          |> Repo.insert!
+          # The set must be updated to use the following track as the opener.
+          track.set
+          |> Repo.preload(:opener)
+          |> Set.changeset(%{opener_id: following_track.id})
+          |> Ecto.Changeset.put_assoc(:opener, following_track)
+          |> Repo.insert!
+        preceeding_track ->
+          # Deleting last track in setlist... no-op.
+          preceeding_track
+        true ->
+          # Deleting only track in the setlist...
+          # The set's opener must be cleared.
+          track.set
+          |> Repo.preload(:opener)
+          |> Set.changeset(%{opener_id: nil})
+          |> Ecto.Changeset.put_assoc(:opener, nil)
+          |> Repo.insert!
+          track
+      end
+    case an_arbitrary_track do
+      nil ->
+        IO.puts inspect an_arbitrary_track
+        throw "ruh roh!!!"
+      _an_arbitrary_track ->
+        Repo.delete!(track) # if this doesn't work, something is fubar
+        conn
+        |> put_flash(:info, "SongPerformance deleted successfully.")
+        |> redirect(to: show_path(conn, :edit, track.set.show))
     end
-
-    conn
-    |> put_flash(:info, "SongPerformance deleted successfully.")
-    |> redirect(to: show_path(conn, :edit, show))
   end
 
   def edit(conn, %{"add" => "segue", "id" => id} = params) do
