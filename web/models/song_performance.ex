@@ -109,7 +109,7 @@ defmodule JradNet.SongPerformance do
 
   def swap_for(song_name) do
     song = Repo.get_by(Song, name: song_name)
-    last_inserted
+    last_inserted()
     |> __MODULE__.changeset(%{song_id: song.id})
     |> Repo.update
   end
