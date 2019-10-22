@@ -9,7 +9,6 @@
       gtag("config", "UA-110469932-1");
     </script>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-    <meta name="robots" content="noindex, nofollow">
     <meta name="description" content="Setlists and more for Joe Russo's Almost Dead">
     <link rel="icon" type="image/png" href="https://i.imgur.com/Zce5PL0s.png" />
     <title><%= @view_module.title(@view_template, assigns) %></title>
