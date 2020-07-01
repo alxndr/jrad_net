@@ -9,7 +9,11 @@ defmodule JradNet.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/", from: :jrad_net, gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt .well-known/brave-rewards-verification.txt)
+    only: ~w(css fonts images js favicon.ico robots.txt)
+
+  plug Plug.Static,
+    at: "/.well-known/", from: {:jrad_net, "priv/static/.well-known"}, gzip: false,
+    only: ~w(brave-rewards-verification.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
